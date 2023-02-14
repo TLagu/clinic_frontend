@@ -1,0 +1,5 @@
+import { Clinic } from "./Clinic";
+
+export type ClinicsContextType = {
+  clinics: Clinic[] | null;
+};
