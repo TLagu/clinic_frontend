@@ -11,12 +11,22 @@ export const authorizedApi = axios.create();
 export function withAxiosIntercepted<T extends JSX.IntrinsicAttributes>(
   Component: React.ComponentType<T>
 ) {
+  // const isTokenExpired = () => {
+  //   let token = localStorage.getItem(ACCESS_TOKEN);
+  //   const decoded = jwt_decode<JwtPayload>(token ? token : "");
+  //   return decoded.iat && decoded.iat > Date.now() ? true : false;
+  //   //if (decoded && localStorage.setItem(ACCESS_TOKEN, "");
+  // };
+
   return function AxiosIntercepted(props: T) {
     const navigate = useNavigate();
+    // const tokenExpired = isTokenExpired();
+    // isTokenExpired();
     const [isInitialized, setIsInitialized] = useState<boolean>(false);
 
     useEffect(() => {
       axios.interceptors.request.use((config: AxiosRequestConfig) => {
+        console.log("request - without authorization");
         return {
           ...config,
           baseURL: process.env.REACT_APP_API_URL,
@@ -36,6 +46,21 @@ export function withAxiosIntercepted<T extends JSX.IntrinsicAttributes>(
         };
       });
 
+      axios.interceptors.response.use(
+        function (config) {
+          return {
+            ...config,
+            baseURL: process.env.REACT_APP_API_URL,
+          };
+        },
+        function (error) {
+          if (error.response.status === 401) {
+            navigate("/login");
+          }
+          return Promise.reject(error);
+        }
+      );
+
       authorizedApi.interceptors.response.use(
         (response) => {
           return response;
@@ -44,7 +69,7 @@ export function withAxiosIntercepted<T extends JSX.IntrinsicAttributes>(
           if (error.response.status === 401) {
             navigate("/login");
           }
-
+          navigate("/login");
           return Promise.reject(error);
         }
       );
@@ -55,3 +80,5 @@ export function withAxiosIntercepted<T extends JSX.IntrinsicAttributes>(
     return isInitialized ? <Component {...props} /> : <></>;
   };
 }
+
+// export const unauthorizedApi = axios.create();

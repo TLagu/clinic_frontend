@@ -1,4 +1,8 @@
+import { ClinicEmailDto } from "./ClinicEmailDto";
+import { ClinicPhoneDto } from "./ClinicPhoneDto";
+
 export type ClinicDto = {
+  uuid: string;
   province: string;
   district: string;
   community: string;
@@ -8,8 +12,8 @@ export type ClinicDto = {
   flatNo: string;
   postCode: string;
   post: string;
-  name: string;
+  clinicName: string;
   description: string;
-  emails: string[];
-  phoneNumbers: string[];
+  emails: ClinicEmailDto[];
+  phones: ClinicPhoneDto[];
 };

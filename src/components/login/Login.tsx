@@ -30,7 +30,6 @@ export const Login = () => {
         username: username,
         password: password,
       });
-
       localStorage.setItem(ACCESS_TOKEN, result.data.accessToken);
       userModifier({ ...result.data });
       toast.success("Poprawnie zalogowano", {

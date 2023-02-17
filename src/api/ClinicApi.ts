@@ -1,11 +1,11 @@
 import { authorizedApi } from "hooks/withAxiosIntercepted";
 import { PageableResponse } from "models/api/PageableResponse";
-import { ClinicsDto } from "models/api/company/ClinicsDto";
+import { ClinicDto } from "models/api/company/ClinicDto";
 
-export class ClinicsApi {
+export class ClinicApi {
   static getAllClinics = async (pageNumber: number) =>
-    await authorizedApi.get<PageableResponse<ClinicsDto>>(
-      "/product/getAllClinics",
+    await authorizedApi.get<PageableResponse<ClinicDto>>(
+      "/info/getAllClinics",
       {
         params: {
           page: pageNumber,
