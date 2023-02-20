@@ -28,10 +28,6 @@ export const ProfileDrawer = (props: ProfileDrawerProps) => {
     props.toggleProfileDrawer();
   }, [navigate, props, userModifier]);
 
-  const onRegisterClicked = useCallback(() => {
-    // TODO Add registration
-  }, []);
-
   return (
     <Drawer
       open={props.isProfileDrawerOpen}
@@ -69,7 +65,12 @@ export const ProfileDrawer = (props: ProfileDrawerProps) => {
             >
               Zaloguj się
             </PrimaryButton>
-            <SecondaryButton onClick={onRegisterClicked}>
+            <SecondaryButton
+              onClick={() => {
+                navigate("/register");
+                props.toggleProfileDrawer();
+              }}
+            >
               Zarejestruj się
             </SecondaryButton>
           </>

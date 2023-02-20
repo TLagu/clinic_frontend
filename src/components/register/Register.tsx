@@ -38,21 +38,18 @@ export const Register = () => {
       let errorMessage;
 
       if (error.response && error.response.status === 401) {
-        errorMessage = "Wyświetl błąd, że użytkownik istnieje.";
+        errorMessage =
+          "Wszystkie pola muszą mieć więcej niż 3 znaki, a adres email zawierać '@'";
+        navigate("/register");
       } else {
         errorMessage = "Użytkownik już istnieje w bazie";
+        navigate("/register");
       }
       toast.error(errorMessage, {
         position: toast.POSITION.BOTTOM_CENTER,
       });
     }
-  }, [
-    username,
-    email,
-    password,
-    //  userModifier,
-    navigate,
-  ]);
+  }, [username, email, password, navigate]);
 
   useEffect(() => {
     setIsUsernameValid(username.length > 0);
