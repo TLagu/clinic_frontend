@@ -5,14 +5,15 @@ import {
   LoginButton,
   LoginContainer,
   LoginInput,
+  RegisterLink,
   StyledHeading,
   ValidationError,
 } from "./Login.style";
 import { toast } from "react-toastify";
-import { ACCESS_TOKEN } from "constants/constants";
+import { ACCESS_TOKEN, FONT_COLOR } from "constants/constants";
 // tsconfig.json
 import UserContext from "context/UserContext";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Login = () => {
   const [username, setUsername] = useState<string>("");
@@ -69,8 +70,7 @@ export const Login = () => {
 
   return (
     <LoginContainer>
-      <StyledHeading>Jesteś naszym najważniejszym klientem</StyledHeading>
-      <span>Aby kupić najlepsze produkty zaloguj się</span>
+      <StyledHeading>Zaloguj się do portalu</StyledHeading>
       <InputContainer>
         <LoginInput
           placeholder="Nazwa użytkownika"
@@ -92,6 +92,10 @@ export const Login = () => {
         >
           Zaloguj się
         </LoginButton>
+        <RegisterLink><span>Nie masz konta?</span>
+        <Link to={"/register"}>Zarejestruj się</Link>
+          </RegisterLink>
+        
       </InputContainer>
     </LoginContainer>
   );

@@ -1,3 +1,4 @@
+import { FONT_COLOR } from "constants/constants";
 import styled from "styled-components";
 
 export const LoginContainer = styled.div`
@@ -13,12 +14,13 @@ export const StyledHeading = styled.span`
   font-weight: 600;
   margin-top: 32px;
   margin-bottom: 8px;
+  color: ${FONT_COLOR};
 `;
 
 export const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
   width: 20rem;
   margin-top: 16px;
 `;
@@ -51,6 +53,15 @@ export const LoginButton = styled.button`
     filter: brightness(85%);
   }
 `;
+
+export const RegisterLink = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;  
+  padding: 10px;
+  font-weight: 600;
+  color: ${FONT_COLOR};
+`
 
 export const ValidationError = styled.span`
   color: red;
