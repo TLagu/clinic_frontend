@@ -13,6 +13,7 @@ import { Patient } from "components/patient/Patient";
 import { Clinics } from "components/clinics/Clinics";
 import { News } from "components/news/News";
 import { Contact } from "components/contact/Contact";
+import { Register } from "components/register/Register";
 
 export const AppRouter = () => {
   return (
@@ -29,6 +30,14 @@ export const AppRouter = () => {
           element={
             <UnauthorizedRoute>
               <Login />
+            </UnauthorizedRoute>
+          }
+        ></Route>
+        <Route
+          path="/register"
+          element={
+            <UnauthorizedRoute>
+              <Register />
             </UnauthorizedRoute>
           }
         ></Route>

@@ -92,10 +92,10 @@ export const Login = () => {
         >
           Zaloguj się
         </LoginButton>
-        <RegisterLink><span>Nie masz konta?</span>
-        <Link to={"/register"}>Zarejestruj się</Link>
-          </RegisterLink>
-        
+        <RegisterLink>
+          <span>Nie masz konta?</span>
+          <Link to={"/register"}>Zarejestruj się</Link>
+        </RegisterLink>
       </InputContainer>
     </LoginContainer>
   );
