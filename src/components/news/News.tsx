@@ -1,4 +1,4 @@
-import { NewsContainer, StyledHeading } from "./News.styles";
+import { NewsContainer, StyledHeading } from "./News.style";
 
 export const News = () => {
   return (

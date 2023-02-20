@@ -1,4 +1,4 @@
-import { ContactContainer, StyledHeading } from "./Contact.styles";
+import { ContactContainer, StyledHeading } from "./Contact.style";
 
 export const Contact = () => {
   return (

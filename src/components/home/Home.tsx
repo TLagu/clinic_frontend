@@ -1,4 +1,4 @@
-import { HomeContainer, StyledHeading } from "./Home.styles";
+import { HomeContainer, StyledHeading } from "./Home.style";
 
 export const Home = () => {
   return (

@@ -1,4 +1,4 @@
-import { AboutContainer, StyledHeading } from "./About.styles";
+import { AboutContainer, StyledHeading } from "./About.style";
 
 export const About = () => {
   return (

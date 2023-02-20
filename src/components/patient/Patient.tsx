@@ -1,4 +1,4 @@
-import { PatientContainer, StyledHeading } from "./Patient.styles";
+import { PatientContainer, StyledHeading } from "./Patient.style";
 
 export const Patient = () => {
   return (

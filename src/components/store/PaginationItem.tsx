@@ -1,4 +1,4 @@
-import { Item } from "./PaginationItem.styles";
+import { Item } from "./PaginationItem.style";
 
 type PaginationItemProps = {
   number: number;

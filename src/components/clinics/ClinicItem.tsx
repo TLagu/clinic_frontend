@@ -5,7 +5,7 @@ import {
   ItemContainer,
   LeftSide,
   RightSide,
-} from "./ClinicItem.styles";
+} from "./ClinicItem.style";
 type ClinicItemProps = {
   clinic: ClinicDto;
 };

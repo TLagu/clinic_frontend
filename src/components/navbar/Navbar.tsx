@@ -6,7 +6,7 @@ import {
   NavbarLink,
   NavbarLinks,
   NavbarLogo,
-} from "./Navbar.styles";
+} from "./Navbar.style";
 import { useContext } from "react";
 import { Outlet } from "react-router-dom";
 import { ACCESS_TOKEN } from "constants/constants";

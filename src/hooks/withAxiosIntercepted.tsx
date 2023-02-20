@@ -17,6 +17,7 @@ export function withAxiosIntercepted<T extends JSX.IntrinsicAttributes>(
   //   return decoded.iat && decoded.iat > Date.now() ? true : false;
   //   //if (decoded && localStorage.setItem(ACCESS_TOKEN, "");
   // };
+  //localStorage.setItem(ACCESS_TOKEN, "");
 
   return function AxiosIntercepted(props: T) {
     const navigate = useNavigate();

@@ -7,7 +7,7 @@ import {
   LoginInput,
   StyledHeading,
   ValidationError,
-} from "./Login.styles";
+} from "./Login.style";
 import { toast } from "react-toastify";
 import { ACCESS_TOKEN } from "constants/constants";
 // tsconfig.json

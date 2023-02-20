@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { FONT_COLOR } from "constants/constants";
 
 export const NavbarContainer = styled.div`
   display: flex;
@@ -8,7 +9,7 @@ export const NavbarContainer = styled.div`
   align-items: center;
   background-color: #ffffff;
   padding: 8px 16px;
-  color: #1d99c2;
+  color: ${FONT_COLOR};
 `;
 
 export const NavbarLogo = styled.div`
@@ -27,7 +28,7 @@ export const NavbarLinks = styled.div`
 export const NavbarLink = styled(Link)`
   text-decoration: none;
   font-size: 18px;
-  color: #1d99c2;
+  color: ${FONT_COLOR};
 `;
 
 export const NavbarIcons = styled.div`

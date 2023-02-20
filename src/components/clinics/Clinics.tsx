@@ -9,7 +9,7 @@ import {
   PaginationContainer,
   ClinicsContainer,
   StyledHeading,
-} from "./Clinics.styles";
+} from "./Clinics.style";
 import { ClinicItem } from "./ClinicItem";
 
 export const Clinics = () => {

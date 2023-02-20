@@ -1,4 +1,4 @@
-import { AdminContainer, StyledHeading } from "./Admin.styles";
+import { AdminContainer, StyledHeading } from "./Admin.style";
 
 export const Admin = () => {
   return (
