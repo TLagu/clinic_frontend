@@ -42,7 +42,7 @@ export const Navbar = () => {
         <NavbarLinks>
           <NavbarLink to={"/"}>Home</NavbarLink>
           <NavbarLink to={"/about"}>O nas</NavbarLink>
-          <NavbarLink to={"/clinics"}>Nasze kliniki</NavbarLink>
+          <NavbarLink to={"/clinics"}>Nasze Kliniki</NavbarLink>
           <NavbarLink to={"/news"}>Nowości</NavbarLink>
           <NavbarLink to={"/contact"}>Kontakt</NavbarLink>
           <>{getNav("ROLE_ADMIN")}</>

@@ -17,12 +17,13 @@ export const NavbarLogo = styled.div`
   flex-direction: row;
   gap: 16px;
   font-size: 1.5em;
+  font-weight: 600;
 `;
 
 export const NavbarLinks = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 35px;
+  gap: 40px;
 `;
 
 export const NavbarLink = styled(Link)`

@@ -19,11 +19,17 @@ export const About = () => {
       <TextContainer>
         Co ważne i odróżniające nas od konkurencji, to fakt, że w jakości
         świadczeń
-        <BlueTextHighlighter> dążymy do doskonałości, utrzymując </BlueTextHighlighter>
+        <BlueTextHighlighter>
+          {" "}
+          dążymy do doskonałości, utrzymując{" "}
+        </BlueTextHighlighter>
         jednocześnie
-        <BlueTextHighlighter> niewygórowany poziom cenowy. </BlueTextHighlighter>Zależy
-        nam nie tylko na bezpieczeństwie naszych Pacjentów, a przede wszystkim
-        na ich poczuciu bezpieczeństwa i stabilności.
+        <BlueTextHighlighter>
+          {" "}
+          niewygórowany poziom cenowy.{" "}
+        </BlueTextHighlighter>
+        Zależy nam nie tylko na bezpieczeństwie naszych Pacjentów, a przede
+        wszystkim na ich poczuciu bezpieczeństwa i stabilności.
       </TextContainer>
       <TextHeader>Jak dbamy o Pacjentów?</TextHeader>
       <TextContainer>
@@ -31,8 +37,8 @@ export const About = () => {
         <br />
         <li>infolinia czynna całą dobę,</li>
         <li>
-          transport<BlueTextHighlighter> prywatną karetką </BlueTextHighlighter>(pakiet
-          VIP zapewnia usłgę w ramach abonamentu).
+          transport<BlueTextHighlighter> prywatną karetką </BlueTextHighlighter>
+          (pakiet VIP zapewnia usłgę w ramach abonamentu).
         </li>
         <br />
         <BlackTextHighlighter>Usługi ukierunkowane:</BlackTextHighlighter>
@@ -54,7 +60,8 @@ export const About = () => {
         <li>
           osobom o ograniczonej mobilności
           <BlueTextHighlighter> zapewniamy dostawy </BlueTextHighlighter>środków
-          medycznych<BlueTextHighlighter> za pomocą dronów. </BlueTextHighlighter>
+          medycznych
+          <BlueTextHighlighter> za pomocą dronów. </BlueTextHighlighter>
         </li>
         <br />
         <BlackTextHighlighter>
@@ -62,7 +69,9 @@ export const About = () => {
         </BlackTextHighlighter>
         <br />
         <li>
-          <BlueTextHighlighter>systemy profesjonalnej oceny </BlueTextHighlighter>
+          <BlueTextHighlighter>
+            systemy profesjonalnej oceny{" "}
+          </BlueTextHighlighter>
           kompetencji i zaangażowania:
         </li>
         <li>niezależny system zewnętrzny przeznaczony dla Pacjentów,</li>
@@ -86,13 +95,13 @@ export const About = () => {
       <TextHeader>Nasze plany rozwoju</TextHeader>
       <TextContainer>
         Nasze plany rozwoju w Polsce obejmują
-        <BlueTextHighlighter> stworzenie sieci 30 klinik, </BlueTextHighlighter>nie
-        tylko w największych ale i najkorzystniejszych pod kątem
+        <BlueTextHighlighter> stworzenie sieci 30 klinik, </BlueTextHighlighter>
+        nie tylko w największych ale i najkorzystniejszych pod kątem
         rehabilitacyjno-zdrowotnym miastach. Zakładamy zakończenie tego procesu
         w ciągu najbliższych 6-8 lat.
         <NestedTextContainer>
-          Obecne istniejące<BlueTextHighlighter> oddziały </BlueTextHighlighter>są w
-          pełni wyposażone i jak zauważą Państwo w zakładce "Nasze Kliniki"
+          Obecne istniejące<BlueTextHighlighter> oddziały </BlueTextHighlighter>
+          są w pełni wyposażone i jak zauważą Państwo w zakładce "Nasze Kliniki"
           również<BlueTextHighlighter> wyspecjalizowane: </BlueTextHighlighter>
           przedkładamy bowiem specjalistyczną jakość usług nad rozwiązania
           dedykowane pod jak największą pulę świadczeń medycznych.

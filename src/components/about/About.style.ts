@@ -14,7 +14,7 @@ export const StyledHeading = styled.span`
   font-size: 36px;
   font-weight: 600;
   margin-top: 32px;
-  margin-bottom: 8px;
+  margin-bottom: 20px;
   color: ${FONT_COLOR};
 `;
 
@@ -26,7 +26,7 @@ export const TextHeader = styled.h3`
 `;
 
 export const TextContainer = styled.div`
-  font-size: 18px;
+  font-size: 20px;
   margin-left: 40px;
   margin-right: 40px;
   padding: 10px;
@@ -34,7 +34,7 @@ export const TextContainer = styled.div`
 `;
 
 export const NestedTextContainer = styled.div`
-  font-size: 18px;
+  font-size: 20px;
   margin-top: 10px;
   margin-bottom: 10px;
   max-width: 1000px;
