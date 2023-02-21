@@ -1,8 +1,7 @@
 import { useCallback, useContext, useEffect, useState } from "react";
 import UserContext from "context/UserContext";
 import { UserDetailsApi } from "api/UserDetailsApi";
-import FavoriteIcon from "icons/FavoriteIcon";
-import ReturnIcon from "icons/ReturnIcon";
+import { UserDto } from "models/api/company/UserDto";
 import { DoctorPageSection } from "models/DoctorPageSection";
 import {
   HiText,
@@ -13,7 +12,10 @@ import {
   Option,
   RightSection,
 } from "./Doctor.style";
-import { UserDto } from "models/api/company/UserDto";
+import AppointmentIcon from "icons/AppointmentIcon";
+import CalendarIcon from "icons/CalendarIcon";
+import UserIcon from "icons/UserIcon";
+import { Account } from "./account/Account";
 
 export const Doctor = () => {
   const { currentUser } = useContext(UserContext);
@@ -34,18 +36,20 @@ export const Doctor = () => {
     fetchUser();
   }, [fetchUser]);
 
-  // TODO Implement other views
-
   const mapSectionToComponent = () => {
     switch (section) {
       case DoctorPageSection.MedicalVisit:
         return <div>Wizyta</div>;
       case DoctorPageSection.Schedule:
         return <div>Harmonogram</div>;
+      case DoctorPageSection.Account:
+        return (
+          <div>
+            <Account />
+          </div>
+        );
     }
   };
-
-  console.log(user);
 
   return (
     <DoctorContainer>
@@ -54,20 +58,24 @@ export const Doctor = () => {
           <HiText>Witaj</HiText>
           <NameText>
             {[
-              user?.user?.firstName,
-              user?.user?.secondName,
-              user?.user?.lastName,
+              user?.userAppDetails?.firstName,
+              user?.userAppDetails?.secondName,
+              user?.userAppDetails?.lastName,
             ]
               .filter(Boolean)
               .join(" ")}
           </NameText>
           <Option onClick={() => setSection(DoctorPageSection.MedicalVisit)}>
-            <ReturnIcon />
+            <AppointmentIcon />
             <span>Wizyta</span>
           </Option>
           <Option onClick={() => setSection(DoctorPageSection.Schedule)}>
-            <FavoriteIcon />
+            <CalendarIcon />
             <span>Harmonogram</span>
+          </Option>
+          <Option onClick={() => setSection(DoctorPageSection.Account)}>
+            <UserIcon />
+            <span>Konto</span>
           </Option>
         </LeftSide>
         <RightSection>{mapSectionToComponent()}</RightSection>

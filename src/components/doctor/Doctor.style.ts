@@ -30,16 +30,16 @@ export const LeftSide = styled.div`
 `;
 
 export const HiText = styled.p`
-  font-size: 13px;
-  line-height: 16px;
+  font-size: 1.5empx;
+  line-height: 2em;
   font-weight: normal;
   text-decoration: none;
   margin: 0px;
 `;
 
 export const NameText = styled.p`
-  font-size: 18px;
-  line-height: 24px;
+  font-size: 1.1em;
+  line-height: 2em;
   font-weight: bold;
   text-decoration: none;
   margin: 0 0 16px 0;

@@ -3,7 +3,6 @@ import { About } from "components/about/About";
 import { Home } from "components/home/Home";
 import { Login } from "components/login/Login";
 import { Navbar } from "components/navbar/Navbar";
-import { Profile } from "components/profile/Profile";
 import { ProtectedRoute } from "components/ProtectedRoute";
 import { UnauthorizedRoute } from "components/UnauthorizedRoute";
 import { Admin } from "components/admin/Admin";
@@ -39,14 +38,6 @@ export const AppRouter = () => {
             <UnauthorizedRoute>
               <Register />
             </UnauthorizedRoute>
-          }
-        ></Route>
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
           }
         ></Route>
         <Route

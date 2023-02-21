@@ -14,5 +14,6 @@ export type UserDto = {
   username: string;
   email: string;
   roles: string[];
-  user: UserDetails;
+  userAppDetails: UserDetails;
+  clinic: string;
 };
