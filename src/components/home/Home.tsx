@@ -71,7 +71,7 @@ export const Home = () => {
       </TextContainer>
       <TextContainer>
         Jeśli nie posiadają Państwo konta na naszej stronie zachęcamy do
-        zarejestrowania się przyciskiem "Zarejestruj się".
+        jego założenia używając przycisku "Zarejestruj się".
       </TextContainer>
       <ButtonContainer>
         <RegisterButton onClick={onRegisterClicked}>Załóż konto</RegisterButton>
@@ -79,10 +79,10 @@ export const Home = () => {
       </ButtonContainer>
       <TextContainer>
         Po rejestracji i tym samym utworzeniu konta Pacjenta będziecie mieli
-        Państwo dostęp do listy specjalistów oraz mogli umówić u konkretnego
-        specjalisty wizytę online przy zachowaniu minimum formalności.
+        Państwo dostęp do listy naszych Specjalistów oraz możliwość umówienia u konkretnego
+        Lekarza wizyty online przy zachowaniu minimum formalności.
       </TextContainer>
-      <TextHeader>Przyjemnego zwiedzania!</TextHeader>
+      <TextHeader>Życzymy przyjemnego zwiedzania!</TextHeader>
     </HomeContainer>
   );
 };
