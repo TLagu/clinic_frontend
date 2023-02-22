@@ -11,6 +11,7 @@ export type UserDetails = {
 
 export type UserDto = {
   uuid: string;
+  password: string;
   username: string;
   email: string;
   roles: string[];

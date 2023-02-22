@@ -8,17 +8,30 @@ import {
   LeftSide,
   RightSection,
   FormInput,
+  FormSelect,
+  SaveButton,
+  ValidationError,
 } from "./Account.style";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import { UserDto } from "models/api/company/UserDto";
+import { ClinicItems } from "components/common/ClinicItems";
+import { ClinicApi } from "api/ClinicApi";
+import { UserApi } from "api/UserApi";
 
 export const Account = () => {
   const { currentUser } = useContext(UserContext);
   const [user, setUser] = useState<UserDto | null>(null);
+  const [clinicItems, setClinicItems] = useState<ClinicItems | null>(null);
 
   const fetchUser = useCallback(async () => {
     if (currentUser?.username) {
       const userDetails = await UserDetailsApi.getUser(currentUser?.username);
       setUser(userDetails.data);
+      const allClinics = await ClinicApi.getDictionaryClinic();
+      setClinicItems(allClinics.data);
+
+      console.log(userDetails);
 
       setEmail(userDetails.data.email);
       setClinic(
@@ -31,8 +44,6 @@ export const Account = () => {
       setIdNumber(userDetails.data.userAppDetails.idNumber);
       setBirthDay(userDetails.data.userAppDetails.birthDay?.toLocaleString());
       setNip(userDetails.data.userAppDetails.nip);
-
-      console.log(userDetails);
     }
   }, [currentUser?.username]);
 
@@ -50,6 +61,7 @@ export const Account = () => {
   const [idNumber, setIdNumber] = useState<string>("");
   const [birthDay, setBirthDay] = useState<string>("");
   const [nip, setNip] = useState<string>("");
+
   const [isPasswordValid, setIsPasswordValid] = useState<boolean>(true);
   const [isEmailValid, setIsEmailValid] = useState<boolean>(true);
   const [isClinicValid, setIsClinicValid] = useState<boolean>(true);
@@ -61,23 +73,85 @@ export const Account = () => {
   const [isBirthDayValid, setIsBirthDayValid] = useState<boolean>(true);
   const [isNipValid, setIsNipValid] = useState<boolean>(true);
 
+  const navigate = useNavigate();
+  const onSaveClicked = useCallback(async () => {
+    try {
+      const userRequest: UserDto = {
+        uuid: user?.uuid != null ? user.uuid : "",
+        password: password,
+        username: "",
+        email: email,
+        roles: [],
+        userAppDetails: {
+          uuid:
+            user?.userAppDetails?.uuid != null ? user.userAppDetails.uuid : "",
+          firstName: firstName,
+          secondName: secondName,
+          lastName: lastName,
+          pesel: pesel,
+          idNumber: idNumber,
+          birthDay: new Date(birthDay),
+          nip: nip,
+        },
+        clinic: clinic,
+      };
+      console.log(userRequest);
+      await UserApi.updateUser(userRequest);
+      toast.success("Poprawnie zapisano zmiany.", {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    } catch (error: any) {
+      let errorMessage;
+
+      if (error.response && error.response.status === 401) {
+        errorMessage = "Podałeś błędne dane, spróbuj ponownie.";
+      } else {
+        errorMessage = "Wystąpił błąd podczas połączenia z serwerem.";
+      }
+
+      toast.error(errorMessage, {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+
+      navigate("/doctor");
+    }
+  }, [
+    user?.uuid,
+    user?.userAppDetails.uuid,
+    password,
+    email,
+    clinic,
+    firstName,
+    secondName,
+    lastName,
+    pesel,
+    idNumber,
+    birthDay,
+    nip,
+    navigate,
+  ]);
+
   useEffect(() => {
     setIsPasswordValid(
-      password !== null && password.length >= 5 && password.length <= 50
+      password !== null &&
+        (password.length === 0 ||
+          (password.length >= 5 && password.length <= 50))
     );
   }, [password]);
 
   useEffect(() => {
-    setIsEmailValid(email !== null && email.length >= 6 && email.length <= 120);
+    setIsEmailValid(
+      !email === false && email.length >= 5 && email.length <= 50
+    );
   }, [email]);
 
   useEffect(() => {
-    setIsClinicValid(clinic !== null && clinic.length <= 40);
+    setIsClinicValid(!clinic === false && clinic.length <= 40);
   }, [clinic]);
 
   useEffect(() => {
     setIsFirstNameValid(
-      firstName !== null && firstName.length >= 3 && firstName.length <= 50
+      !firstName === false && firstName.length >= 3 && firstName.length <= 50
     );
   }, [firstName]);
 
@@ -87,20 +161,20 @@ export const Account = () => {
 
   useEffect(() => {
     setIsLastNameValid(
-      lastName !== null && lastName.length >= 3 && lastName.length <= 50
+      !lastName === false && lastName.length >= 3 && lastName.length <= 50
     );
   }, [lastName]);
 
   useEffect(() => {
-    setIsPeselValid(pesel !== null && pesel.length === 11);
+    setIsPeselValid(!pesel === false && pesel.length === 11);
   }, [pesel]);
 
   useEffect(() => {
-    setIsIdNumberValid(idNumber !== null && idNumber.length < 20);
+    setIsIdNumberValid(!idNumber === false && idNumber.length < 20);
   }, [idNumber]);
 
   useEffect(() => {
-    setIsBirthDayValid(birthDay !== null && !isNaN(Date.parse(birthDay)));
+    setIsBirthDayValid(!birthDay === false && !isNaN(Date.parse(birthDay)));
   }, [birthDay]);
 
   useEffect(() => {
@@ -115,7 +189,7 @@ export const Account = () => {
     setEmail(event.target.value);
   };
 
-  const onClinicChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const onClinicChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setClinic(event.target.value);
   };
 
@@ -158,6 +232,12 @@ export const Account = () => {
             type="password"
             onChange={(e) => onPasswordChange(e)}
           ></FormInput>
+          {!isPasswordValid && (
+            <ValidationError>
+              Wprowadź poprawnie hasło.
+              <br /> Hasło musi mieć minimum 5 znaków i maksimum 50.
+            </ValidationError>
+          )}
         </RightSection>
       </InputContainer>
       <InputContainer>
@@ -169,17 +249,35 @@ export const Account = () => {
             value={`${email}`}
             onChange={(e) => onEmailChange(e)}
           ></FormInput>
+          {!isEmailValid && (
+            <ValidationError>
+              Wprowadź poprawnie adres e-mail.
+              <br />
+              E-mail musi mieć minimum 5 znaków i maksimum 50.
+            </ValidationError>
+          )}
         </RightSection>
       </InputContainer>
       <InputContainer>
         <LeftSide>Klinika:</LeftSide>
         <RightSection>
-          <FormInput
-            placeholder="Klinika..."
-            type="text"
-            value={`${clinic}`}
-            onChange={(e) => onClinicChange(e)}
-          ></FormInput>
+          <FormSelect onChange={(e) => onClinicChange(e)} defaultValue={clinic}>
+            <option value="" hidden>
+              Klinika...
+            </option>
+            {clinicItems?.items?.map((c) => (
+              <option selected={c.uuid === clinic} value={c.uuid}>
+                {c.itemName}
+              </option>
+            ))}
+          </FormSelect>
+          {!isClinicValid && (
+            <ValidationError>
+              Wybierz klinikę.
+              <br />
+              Pole kliniki nie może być puste.
+            </ValidationError>
+          )}
         </RightSection>
       </InputContainer>
       <InputContainer>
@@ -191,6 +289,13 @@ export const Account = () => {
             value={`${firstName}`}
             onChange={(e) => onFirstNameChange(e)}
           ></FormInput>
+          {!isFirstNameValid && (
+            <ValidationError>
+              Wprowadź poprawnie pierwsze imię.
+              <br />
+              Pierwsze imię musi mieć minimum 5 znaków i maksimum 50.
+            </ValidationError>
+          )}
         </RightSection>
       </InputContainer>
       <InputContainer>
@@ -202,6 +307,14 @@ export const Account = () => {
             value={`${secondName}`}
             onChange={(e) => onSecondNameChange(e)}
           ></FormInput>
+          {!isSecondNameValid && (
+            <ValidationError>
+              Wprowadź poprawnie drugie imię.
+              <br />
+              Pierwsze imię może być puste lub musi mieć minimum 5 znaków i
+              maksimum 50.
+            </ValidationError>
+          )}
         </RightSection>
       </InputContainer>
       <InputContainer>
@@ -213,6 +326,13 @@ export const Account = () => {
             value={`${lastName}`}
             onChange={(e) => onLastNameChange(e)}
           ></FormInput>
+          {!isLastNameValid && (
+            <ValidationError>
+              Wprowadź poprawnie nazwisko.
+              <br />
+              Nazwisko musi mieć minimum 5 znaków i maksimum 50.
+            </ValidationError>
+          )}
         </RightSection>
       </InputContainer>
       <InputContainer>
@@ -224,6 +344,13 @@ export const Account = () => {
             value={`${pesel}`}
             onChange={(e) => onPeselChange(e)}
           ></FormInput>
+          {!isPeselValid && (
+            <ValidationError>
+              Wprowadź poprawnie numer PESEL.
+              <br />
+              PESEL musi mieć dokładnie 11 znaków.
+            </ValidationError>
+          )}
         </RightSection>
       </InputContainer>
       <InputContainer>
@@ -235,6 +362,14 @@ export const Account = () => {
             value={`${idNumber}`}
             onChange={(e) => onIdNumberChange(e)}
           ></FormInput>
+          {!isIdNumberValid && (
+            <ValidationError>
+              Wprowadź poprawnie serię i numer dowodu osobistego.
+              <br />
+              Seria i numer dowodu nie może być pusta i nie może przekroczyć 20
+              znaków.
+            </ValidationError>
+          )}
         </RightSection>
       </InputContainer>
       <InputContainer>
@@ -257,7 +392,34 @@ export const Account = () => {
             value={`${nip}`}
             onChange={(e) => onNipChange(e)}
           ></FormInput>
+          {!isFirstNameValid && (
+            <ValidationError>
+              Wprowadź poprawnie numer NIP.
+              <br />
+              NIP może pozostać pusty lub zawierać dokładnie 10 znaków
+              (wprowadzać bez myślników i spacji).
+            </ValidationError>
+          )}
         </RightSection>
+      </InputContainer>
+      <InputContainer>
+        <SaveButton
+          disabled={
+            !isPasswordValid ||
+            !isEmailValid ||
+            !isClinicValid ||
+            !isFirstNameValid ||
+            !isSecondNameValid ||
+            !isLastNameValid ||
+            !isPeselValid ||
+            !isIdNumberValid ||
+            !isBirthDayValid ||
+            !isNipValid
+          }
+          onClick={onSaveClicked}
+        >
+          Zapisz
+        </SaveButton>
       </InputContainer>
     </AccountContainer>
   );

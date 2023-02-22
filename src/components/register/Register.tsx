@@ -1,5 +1,4 @@
 import { AuthApi } from "api/AuthApi";
-import { ACCESS_TOKEN } from "constants/constants";
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -25,7 +24,7 @@ export const Register = () => {
 
   const onRegisterClicked = useCallback(async () => {
     try {
-      const result = await AuthApi.signUp({
+      await AuthApi.signUp({
         username: username,
         email: email,
         password: password,

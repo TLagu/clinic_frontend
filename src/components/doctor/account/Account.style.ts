@@ -39,6 +39,7 @@ export const RightSection = styled.div`
 `;
 
 export const FormInput = styled.input`
+  width: 350px;
   padding: 6px 12px;
   font-size: 18px;
   border-radius: 4px;
@@ -47,6 +48,15 @@ export const FormInput = styled.input`
   outline: transparent solid 2px;
 `;
 
+export const FormSelect = styled.select`
+  width: 350px;
+  padding: 6px 12px;
+  font-size: 18px;
+  border-radius: 4px;
+  border-width: 1px;
+  border-style: solid;
+  outline: transparent solid 2px;
+`;
 export const FormButton = styled.button`
   padding: 16px;
   border: 0;
@@ -67,7 +77,29 @@ export const FormButton = styled.button`
   }
 `;
 
-export const ValidationError = styled.span`
+export const ValidationError = styled.div`
   color: red;
   font-size: 13px;
+`;
+
+export const SaveButton = styled.button`
+  padding: 12px 25px;
+  margin: 10px auto;
+  font-size: 18px;
+  border: 0;
+  background-color: #24a0ed;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+
+  &:disabled {
+    background-color: #cccccc;
+    color: #666666;
+  }
+
+  &:hover {
+    filter: brightness(85%);
+  }
 `;

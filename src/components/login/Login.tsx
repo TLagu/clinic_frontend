@@ -10,7 +10,7 @@ import {
   ValidationError,
 } from "./Login.style";
 import { toast } from "react-toastify";
-import { ACCESS_TOKEN, FONT_COLOR } from "constants/constants";
+import { ACCESS_TOKEN } from "constants/constants";
 // tsconfig.json
 import UserContext from "context/UserContext";
 import { Link, useNavigate } from "react-router-dom";
