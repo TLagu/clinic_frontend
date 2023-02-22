@@ -1,3 +1,4 @@
+import { FONT_COLOR } from "constants/constants";
 import styled from "styled-components";
 
 export const ItemContainer = styled.div`
@@ -35,7 +36,13 @@ export const RightSide = styled.div`
 `;
 
 export const ImportantInfo = styled.span`
-  font-size: 18px;
+  font-size: 26px;
   font-weight: 600;
+  font-style: italic;
   text-align: center;
+  margin-bottom: 30px;
+`;
+
+export const LineHighlighter = styled.text`
+  color: ${FONT_COLOR};
 `;

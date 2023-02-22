@@ -1,3 +1,4 @@
+import { FONT_COLOR } from "constants/constants";
 import styled from "styled-components";
 
 export const Loader = styled.span`
@@ -38,7 +39,9 @@ export const ClinicsContainer = styled.div`
 export const StyledHeading = styled.span`
   font-size: 36px;
   font-weight: 600;
-  margin-top: 25px;
+  margin-top: 64px;
+  margin-bottom: 25px;
+  color: ${FONT_COLOR}
 `;
 
 export const PaginationContainer = styled.div`
