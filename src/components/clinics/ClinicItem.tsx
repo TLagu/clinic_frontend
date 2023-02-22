@@ -53,13 +53,19 @@ export const ClinicItem = ({ clinic }: ClinicItemProps) => {
       <>{createLine("Powiat", clinic.district)}</>
       <>{createLine("Gmina", clinic.community)}</>
       <>{createLine("Miejscowość", clinic.locality)}</>
-      <><LineHighlighter>
-        {createLine(
-          "Ulica",
-          concatString([clinic.street, clinic.streetNo, clinic.flatNo])
-        )}</LineHighlighter>
+      <>
+        <LineHighlighter>
+          {createLine(
+            "Ulica",
+            concatString([clinic.street, clinic.streetNo, clinic.flatNo])
+          )}
+        </LineHighlighter>
       </>
-      <><LineHighlighter>{createLine("Poczta", concatString([clinic.postCode, clinic.post]))}</LineHighlighter></>
+      <>
+        <LineHighlighter>
+          {createLine("Poczta", concatString([clinic.postCode, clinic.post]))}
+        </LineHighlighter>
+      </>
       <>
         {createLineFromArray(
           "E-mail",
@@ -72,7 +78,11 @@ export const ClinicItem = ({ clinic }: ClinicItemProps) => {
           clinic.phones.map((e) => e.phoneType + " - " + e.phone)
         )}
       </>
-      <><LineHighlighter>{createLine("Opis", clinic.description)}</LineHighlighter></>
+      <>
+        <LineHighlighter>
+          {createLine("Opis", clinic.description)}
+        </LineHighlighter>
+      </>
     </ItemContainer>
   );
 };
