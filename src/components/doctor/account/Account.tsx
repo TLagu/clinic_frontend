@@ -2,22 +2,20 @@ import { useCallback, useContext, useEffect, useState } from "react";
 import UserContext from "context/UserContext";
 import { UserDetailsApi } from "api/UserDetailsApi";
 import {
-  AccountContainer,
+  FormContainer,
   InputContainer,
   StyledHeading,
-  LeftSide,
-  RightSection,
-  FormInput,
-  FormSelect,
   SaveButton,
-  ValidationError,
-} from "./Account.style";
+} from "components/form/Form.style";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { UserDto } from "models/api/company/UserDto";
 import { ClinicItems } from "components/common/ClinicItems";
 import { ClinicApi } from "api/ClinicApi";
 import { UserApi } from "api/UserApi";
+import { FormLineInput } from "components/form/FormLineInput";
+import { FormLineSelect } from "components/form/FormLineSelect";
+import { isAccountValidation } from "./AccountValidation";
 
 export const Account = () => {
   const { currentUser } = useContext(UserContext);
@@ -132,275 +130,157 @@ export const Account = () => {
   ]);
 
   useEffect(() => {
-    setIsPasswordValid(
-      password !== null &&
-        (password.length === 0 ||
-          (password.length >= 5 && password.length <= 50))
-    );
+    setIsPasswordValid(isAccountValidation(password, "password"));
   }, [password]);
 
   useEffect(() => {
-    setIsEmailValid(
-      !email === false && email.length >= 5 && email.length <= 50
-    );
+    setIsEmailValid(isAccountValidation(email, "email"));
   }, [email]);
 
   useEffect(() => {
-    setIsClinicValid(!clinic === false && clinic.length <= 40);
+    setIsClinicValid(isAccountValidation(clinic, "clinic"));
   }, [clinic]);
 
   useEffect(() => {
-    setIsFirstNameValid(
-      !firstName === false && firstName.length >= 3 && firstName.length <= 50
-    );
+    setIsFirstNameValid(isAccountValidation(firstName, "firstName"));
   }, [firstName]);
 
   useEffect(() => {
-    setIsSecondNameValid(secondName !== null && secondName.length <= 50);
+    setIsSecondNameValid(isAccountValidation(secondName, "secondName"));
   }, [secondName]);
 
   useEffect(() => {
-    setIsLastNameValid(
-      !lastName === false && lastName.length >= 3 && lastName.length <= 50
-    );
+    setIsLastNameValid(isAccountValidation(lastName, "lastName"));
   }, [lastName]);
 
   useEffect(() => {
-    setIsPeselValid(!pesel === false && pesel.length === 11);
+    setIsPeselValid(isAccountValidation(pesel, "pesel"));
   }, [pesel]);
 
   useEffect(() => {
-    setIsIdNumberValid(!idNumber === false && idNumber.length < 20);
+    setIsIdNumberValid(isAccountValidation(idNumber, "idNumber"));
   }, [idNumber]);
 
   useEffect(() => {
-    setIsBirthDayValid(!birthDay === false && !isNaN(Date.parse(birthDay)));
+    setIsBirthDayValid(isAccountValidation(birthDay, "birthDay"));
   }, [birthDay]);
 
   useEffect(() => {
-    setIsNipValid((nip !== null && nip.length === 0) || nip.length === 10);
+    setIsNipValid(isAccountValidation(nip, "nip"));
   }, [nip]);
 
-  const onPasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(event.target.value);
-  };
-
-  const onEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(event.target.value);
-  };
-
-  const onClinicChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setClinic(event.target.value);
-  };
-
-  const onFirstNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFirstName(event.target.value);
-  };
-
-  const onSecondNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSecondName(event.target.value);
-  };
-
-  const onLastNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setLastName(event.target.value);
-  };
-
-  const onPeselChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setPesel(event.target.value);
-  };
-
-  const onIdNumberChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setIdNumber(event.target.value);
-  };
-
-  const onBirthDayChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setBirthDay(event.target.value);
-  };
-
-  const onNipChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setNip(event.target.value);
-  };
-
   return (
-    <AccountContainer>
+    <FormContainer>
       <StyledHeading>Dane użytkownika:</StyledHeading>
       <InputContainer>
-        <LeftSide>Hasło:</LeftSide>
-        <RightSection>
-          <FormInput
-            placeholder="Hasło..."
-            type="password"
-            onChange={(e) => onPasswordChange(e)}
-          ></FormInput>
-          {!isPasswordValid && (
-            <ValidationError>
-              Wprowadź poprawnie hasło.
-              <br /> Hasło musi mieć minimum 5 znaków i maksimum 50.
-            </ValidationError>
-          )}
-        </RightSection>
+        <FormLineInput
+          label="Hasło:"
+          placeholder="Hasło..."
+          type="password"
+          value={password}
+          onChange={(value) => setPassword(value)}
+          validationResult={isPasswordValid}
+          validationMessage={`Wprowadź poprawnie hasło.\nHasło musi mieć minimum 5 znaków i maksimum 50.`}
+        />
       </InputContainer>
       <InputContainer>
-        <LeftSide>Adres e-mail:</LeftSide>
-        <RightSection>
-          <FormInput
-            placeholder="Adres e-mail..."
-            type="text"
-            value={`${email}`}
-            onChange={(e) => onEmailChange(e)}
-          ></FormInput>
-          {!isEmailValid && (
-            <ValidationError>
-              Wprowadź poprawnie adres e-mail.
-              <br />
-              E-mail musi mieć minimum 5 znaków i maksimum 50.
-            </ValidationError>
-          )}
-        </RightSection>
+        <FormLineInput
+          label="Adres e-mail:"
+          placeholder="Adres e-mail..."
+          type="text"
+          value={email}
+          onChange={(value) => setEmail(value)}
+          validationResult={isEmailValid}
+          validationMessage={`Wprowadź poprawnie adres e-mail.\nE-mail musi mieć minimum 5 znaków i maksimum 50.`}
+        />
       </InputContainer>
       <InputContainer>
-        <LeftSide>Klinika:</LeftSide>
-        <RightSection>
-          <FormSelect onChange={(e) => onClinicChange(e)} defaultValue={clinic}>
-            <option value="" hidden>
-              Klinika...
-            </option>
-            {clinicItems?.items?.map((c) => (
-              <option selected={c.uuid === clinic} value={c.uuid}>
-                {c.itemName}
-              </option>
-            ))}
-          </FormSelect>
-          {!isClinicValid && (
-            <ValidationError>
-              Wybierz klinikę.
-              <br />
-              Pole kliniki nie może być puste.
-            </ValidationError>
-          )}
-        </RightSection>
+        <FormLineSelect
+          label="Adres e-mail:"
+          onChange={(value) => setClinic(value)}
+          placeholder="Klinika..."
+          clinics={clinicItems as any}
+          value={clinic}
+          validationResult={isClinicValid}
+          validationMessage={`Wprowadź poprawnie adres e-mail.\nE-mail musi mieć minimum 5 znaków i maksimum 50.`}
+        />
       </InputContainer>
       <InputContainer>
-        <LeftSide>Pierwsze imię:</LeftSide>
-        <RightSection>
-          <FormInput
-            placeholder="Pierwsze imię..."
-            type="text"
-            value={`${firstName}`}
-            onChange={(e) => onFirstNameChange(e)}
-          ></FormInput>
-          {!isFirstNameValid && (
-            <ValidationError>
-              Wprowadź poprawnie pierwsze imię.
-              <br />
-              Pierwsze imię musi mieć minimum 5 znaków i maksimum 50.
-            </ValidationError>
-          )}
-        </RightSection>
+        <FormLineInput
+          label="Pierwsze imię:"
+          placeholder="Pierwsze imię..."
+          type="text"
+          value={firstName}
+          onChange={(value) => setFirstName(value)}
+          validationResult={isFirstNameValid}
+          validationMessage={`Wprowadź poprawnie pierwsze imię.\nPierwsze imię musi mieć minimum 5 znaków i maksimum 50.`}
+        />
       </InputContainer>
       <InputContainer>
-        <LeftSide>Drugie Imię:</LeftSide>
-        <RightSection>
-          <FormInput
-            placeholder="Drugie Imię..."
-            type="text"
-            value={`${secondName}`}
-            onChange={(e) => onSecondNameChange(e)}
-          ></FormInput>
-          {!isSecondNameValid && (
-            <ValidationError>
-              Wprowadź poprawnie drugie imię.
-              <br />
-              Pierwsze imię może być puste lub musi mieć minimum 5 znaków i
-              maksimum 50.
-            </ValidationError>
-          )}
-        </RightSection>
+        <FormLineInput
+          label="Drugie imię:"
+          placeholder="Drugie imię..."
+          type="text"
+          value={secondName}
+          onChange={(value) => setSecondName(value)}
+          validationResult={isSecondNameValid}
+          validationMessage={`Wprowadź poprawnie drugie imię.\nDrugie imię może być puste lub musi mieć minimum 5 znaków i maksimum 50.`}
+        />
       </InputContainer>
       <InputContainer>
-        <LeftSide>Nazwisko:</LeftSide>
-        <RightSection>
-          <FormInput
-            placeholder="Nazwisko..."
-            type="text"
-            value={`${lastName}`}
-            onChange={(e) => onLastNameChange(e)}
-          ></FormInput>
-          {!isLastNameValid && (
-            <ValidationError>
-              Wprowadź poprawnie nazwisko.
-              <br />
-              Nazwisko musi mieć minimum 5 znaków i maksimum 50.
-            </ValidationError>
-          )}
-        </RightSection>
+        <FormLineInput
+          label="Nazwisko:"
+          placeholder="Nazwisko..."
+          type="text"
+          value={lastName}
+          onChange={(value) => setLastName(value)}
+          validationResult={isLastNameValid}
+          validationMessage={`Wprowadź poprawnie nazwisko.\nNazwisko musi mieć minimum 5 znaków i maksimum 50.`}
+        />
       </InputContainer>
       <InputContainer>
-        <LeftSide>Numer PESEL:</LeftSide>
-        <RightSection>
-          <FormInput
-            placeholder="PESEL..."
-            type="text"
-            value={`${pesel}`}
-            onChange={(e) => onPeselChange(e)}
-          ></FormInput>
-          {!isPeselValid && (
-            <ValidationError>
-              Wprowadź poprawnie numer PESEL.
-              <br />
-              PESEL musi mieć dokładnie 11 znaków.
-            </ValidationError>
-          )}
-        </RightSection>
+        <FormLineInput
+          label="Numer PESEL:"
+          placeholder="Numer PESEL..."
+          type="text"
+          value={pesel}
+          onChange={(value) => setPesel(value)}
+          validationResult={isPeselValid}
+          validationMessage={`Wprowadź poprawnie numer PESEL.\nPESEL musi mieć dokładnie 11 znaków.`}
+        />
       </InputContainer>
       <InputContainer>
-        <LeftSide>Numer dowodu osobistego</LeftSide>
-        <RightSection>
-          <FormInput
-            placeholder="Seria i numer dowodu osobistego..."
-            type="text"
-            value={`${idNumber}`}
-            onChange={(e) => onIdNumberChange(e)}
-          ></FormInput>
-          {!isIdNumberValid && (
-            <ValidationError>
-              Wprowadź poprawnie serię i numer dowodu osobistego.
-              <br />
-              Seria i numer dowodu nie może być pusta i nie może przekroczyć 20
-              znaków.
-            </ValidationError>
-          )}
-        </RightSection>
+        <FormLineInput
+          label="Seria i numer dowodu osobistego:"
+          placeholder="Seria i numer dowodu osobistego..."
+          type="text"
+          value={idNumber}
+          onChange={(value) => setIdNumber(value)}
+          validationResult={isIdNumberValid}
+          validationMessage={`Wprowadź poprawnie serię i numer dowodu osobistego.\nSeria i numer dowodu nie może być pusta i nie może przekroczyć 20 znaków.`}
+        />
       </InputContainer>
       <InputContainer>
-        <LeftSide>Data urodzenia:</LeftSide>
-        <RightSection>
-          <FormInput
-            placeholder="Data urodzenia..."
-            type="text"
-            value={`${birthDay}`}
-            onChange={(e) => onBirthDayChange(e)}
-          ></FormInput>
-        </RightSection>
+        <FormLineInput
+          label="Data urodzenia:"
+          placeholder="Data urodzenia..."
+          type="text"
+          value={birthDay}
+          onChange={(value) => setBirthDay(value)}
+          validationResult={isBirthDayValid}
+          validationMessage={`Wprowadź poprawnie datę urodzenia.\nFormat daty urodzenia to YYYY-MM-DD.`}
+        />
       </InputContainer>
       <InputContainer>
-        <LeftSide>Numer NIP:</LeftSide>
-        <RightSection>
-          <FormInput
-            placeholder="NIP..."
-            type="text"
-            value={`${nip}`}
-            onChange={(e) => onNipChange(e)}
-          ></FormInput>
-          {!isFirstNameValid && (
-            <ValidationError>
-              Wprowadź poprawnie numer NIP.
-              <br />
-              NIP może pozostać pusty lub zawierać dokładnie 10 znaków
-              (wprowadzać bez myślników i spacji).
-            </ValidationError>
-          )}
-        </RightSection>
+        <FormLineInput
+          label="Numer NIP:"
+          placeholder="Numer NIP..."
+          type="text"
+          value={nip}
+          onChange={(value) => setNip(value)}
+          validationResult={isNipValid}
+          validationMessage={`Wprowadź poprawnie numer NIP.\nNIP może pozostać pusty lub zawierać dokładnie 10 znaków (wprowadzać bez myślników i spacji).`}
+        />
       </InputContainer>
       <InputContainer>
         <SaveButton
@@ -421,6 +301,6 @@ export const Account = () => {
           Zapisz
         </SaveButton>
       </InputContainer>
-    </AccountContainer>
+    </FormContainer>
   );
 };

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { FONT_COLOR } from "constants/constants";
 
-export const AccountContainer = styled.div`
+export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -32,7 +32,7 @@ export const LeftSide = styled.div`
   width: 200px;
 `;
 
-export const RightSection = styled.div`
+export const RightSide = styled.div`
   text-align: left;
   margin: 5px 0;
   width: 100%;
@@ -80,6 +80,7 @@ export const FormButton = styled.button`
 export const ValidationError = styled.div`
   color: red;
   font-size: 13px;
+  white-space: pre-wrap;
 `;
 
 export const SaveButton = styled.button`
