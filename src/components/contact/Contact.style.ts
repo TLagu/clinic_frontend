@@ -1,3 +1,4 @@
+import { FONT_COLOR } from "constants/constants";
 import styled from "styled-components";
 
 export const Loader = styled.span`
@@ -24,14 +25,14 @@ export const CompanyContainer = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  margin-top: 64px;
 `;
 
 export const StyledHeading = styled.span`
   font-size: 36px;
   font-weight: 600;
-  margin-top: 32px;
-  margin-bottom: 8px;
+  margin-top: 64px;
+  margin-bottom: 25px;
+  color: ${FONT_COLOR};
 `;
 
 export const ItemsContainer = styled.div`

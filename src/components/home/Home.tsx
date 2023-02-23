@@ -70,8 +70,8 @@ export const Home = () => {
         Państwo u nas konto, prosimy o kliknięcie w przycisk "Zaloguj się".
       </TextContainer>
       <TextContainer>
-        Jeśli nie posiadają Państwo konta na naszej stronie zachęcamy do
-        jego założenia używając przycisku "Zarejestruj się".
+        Jeśli nie posiadają Państwo konta na naszej stronie zachęcamy do jego
+        założenia używając przycisku "Zarejestruj się".
       </TextContainer>
       <ButtonContainer>
         <RegisterButton onClick={onRegisterClicked}>Załóż konto</RegisterButton>
@@ -79,8 +79,15 @@ export const Home = () => {
       </ButtonContainer>
       <TextContainer>
         Po rejestracji i tym samym utworzeniu konta Pacjenta będziecie mieli
-        Państwo dostęp do listy naszych Specjalistów oraz możliwość umówienia u konkretnego
-        Lekarza wizyty online przy zachowaniu minimum formalności.
+        Państwo dostęp do listy naszych Specjalistów oraz możliwość umówienia u
+        konkretnego Lekarza wizyty online przy zachowaniu minimum formalności.
+      </TextContainer>
+      <TextContainer></TextContainer>
+      <TextContainer>
+        W razie pytań lub wątpliwości zachęcamy do kontaktu z całodobową
+        infolinią:
+        <br />
+        <StyledHeading>0 800 001 000 003</StyledHeading>
       </TextContainer>
       <TextHeader>Życzymy przyjemnego zwiedzania!</TextHeader>
     </HomeContainer>

@@ -9,9 +9,11 @@ export const ItemContainer = styled.div`
   border-radius: 16px;
 `;
 
-export const ItemPhoto = styled.img`
-  width: 100%;
-  height: 300px;
+export const ItemNestedContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  margin-top: 35px;
 `;
 
 export const DataContainer = styled.div`
@@ -40,7 +42,8 @@ export const ImportantInfo = styled.span`
   font-weight: 600;
   font-style: italic;
   text-align: center;
-  margin-bottom: 30px;
+  margin-top: 15px;
+  margin-bottom: 40px;
 `;
 
 export const LineHighlighter = styled.text`

@@ -1,7 +1,5 @@
 import { CompanyApi } from "api/CompanyApi";
-import { PaginationContainer } from "components/clinics/Clinics.style";
 import { CompanyItem } from "components/company/CompanyItem";
-import { PaginationItem } from "components/store/PaginationItem";
 import { CompanyDto } from "models/api/company/CompanyDto";
 import { PageableResponse } from "models/api/PageableResponse";
 import { useCallback, useEffect, useState } from "react";
@@ -21,13 +19,13 @@ export const Company = () => {
   const fetchProducts = useCallback(async () => {
     try {
       setIsLoading(true);
-      const result = await CompanyApi.getAllCompanies(pageNumber);
+      const result = await CompanyApi.getCompanyData(pageNumber);
       setCompany(result.data);
     } finally {
       setIsLoading(false);
     }
   }, [pageNumber]);
-  
+
   const onPageChanged = (number: number) => {
     setPageNumber(number - 1);
   };
@@ -49,11 +47,6 @@ export const Company = () => {
               <CompanyItem company={x} />
             ))}
           </ItemsContainer>
-          <PaginationContainer>
-            {Array.from({ length: company.totalPages }).map((x, i) => (
-              <PaginationItem onPageChanged={onPageChanged} number={i + 1} />
-            ))}
-          </PaginationContainer>
         </>
       ) : (
         <h2>Brak danych</h2>

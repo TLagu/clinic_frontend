@@ -17,6 +17,9 @@ export const StyledHeading = styled.span`
   margin-top: 32px;
   margin-bottom: 20px;
   color: ${FONT_COLOR};
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const TextHeader = styled.h3`
