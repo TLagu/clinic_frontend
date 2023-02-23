@@ -15,6 +15,7 @@ import { Outlet } from "react-router-dom";
 import { ACCESS_TOKEN } from "constants/constants";
 import UserContext from "context/UserContext";
 import { RoleType } from "models/RoleType";
+import ClinicLogoIcon from "icons/ClinicLogo";
 
 export const Navbar = () => {
   const { toggleProfileDrawer } = useContext(DrawerContext);
@@ -53,7 +54,9 @@ export const Navbar = () => {
   return (
     <>
       <NavbarContainer>
-        <NavbarLogo>Klinika zdrowia</NavbarLogo>
+        <NavbarLogo>
+          <ClinicLogoIcon /> Klinika zdrowia
+        </NavbarLogo>
         <NavbarLinks>
           <NavbarLink to={"/"}>Home</NavbarLink>
           <NavbarLink to={"/about"}>O nas</NavbarLink>

@@ -56,6 +56,7 @@ export const FormSelect = styled.select`
   border-style: solid;
   outline: transparent solid 2px;
 `;
+
 export const FormButton = styled.button`
   padding: 16px;
   border: 0;

@@ -15,15 +15,15 @@ export const NavbarContainer = styled.div`
 export const NavbarLogo = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 16px;
-  font-size: 1.5em;
+  gap: 10px;
+  font-size: 1.4em;
   font-weight: 600;
 `;
 
 export const NavbarLinks = styled.div`
   display: flex;
   flex-direction: row;
-  gap: 40px;
+  gap: 35px;
 `;
 
 export const NavbarLink = styled(Link)`
