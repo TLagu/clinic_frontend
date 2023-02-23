@@ -18,21 +18,26 @@ export const Clinics = () => {
   );
   const [pageNumber, setPageNumber] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const fetchProducts = useCallback(async () => {
     try {
       setIsLoading(true);
       const result = await ClinicApi.getAllClinics(pageNumber);
       setClinics(result.data);
+      console.log(clinics);
     } finally {
       setIsLoading(false);
     }
   }, [pageNumber]);
+
   const onPageChanged = (number: number) => {
     setPageNumber(number - 1);
   };
+
   useEffect(() => {
     fetchProducts();
   }, [fetchProducts, pageNumber]);
+
   if (isLoading) {
     return <Loader />;
   }

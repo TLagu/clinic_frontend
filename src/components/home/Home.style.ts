@@ -73,7 +73,7 @@ export const LoginButton = styled.button`
   }
 `;
 
-export const BlueTextHighlighter = styled.text`
+export const BlueTextHighlighter = styled.span`
   font-weight: 600;
   font-style: italic;
   color: ${FONT_COLOR};

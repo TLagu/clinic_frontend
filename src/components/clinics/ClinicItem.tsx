@@ -47,7 +47,7 @@ export const ClinicItem = ({ clinic }: ClinicItemProps) => {
     return table.join(" ").trim();
   }
   return (
-    <ItemContainer>
+    <ItemContainer key={clinic.uuid}>
       <ImportantInfo>{clinic.clinicName}</ImportantInfo>
       <>{createLine("Wojewdództwo", clinic.province)}</>
       <>{createLine("Powiat", clinic.district)}</>
@@ -75,7 +75,7 @@ export const ClinicItem = ({ clinic }: ClinicItemProps) => {
       <>
         {createLineFromArray(
           "Phone",
-          clinic.phones.map((e) => e.phoneType + " - " + e.phone)
+          clinic.phones.map((e) => e.phoneType.type + " - " + e.phone)
         )}
       </>
       <>

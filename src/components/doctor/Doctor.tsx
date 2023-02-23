@@ -16,6 +16,7 @@ import AppointmentIcon from "icons/AppointmentIcon";
 import CalendarIcon from "icons/CalendarIcon";
 import UserIcon from "icons/UserIcon";
 import { Account } from "./account/Account";
+import { Schedule } from "./schedule/Schedule";
 
 export const Doctor = () => {
   const { currentUser } = useContext(UserContext);
@@ -41,7 +42,11 @@ export const Doctor = () => {
       case DoctorPageSection.MedicalVisit:
         return <div>Wizyta</div>;
       case DoctorPageSection.Schedule:
-        return <div>Harmonogram</div>;
+        return (
+          <div>
+            <Schedule />
+          </div>
+        );
       case DoctorPageSection.Account:
         return (
           <div>

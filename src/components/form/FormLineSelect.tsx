@@ -17,7 +17,7 @@ export const FormLineSelect = (props: FormLineSelectProps) => {
       <LeftSide>{props.label}</LeftSide>
       <RightSide>
         <FormSelect onChange={(e) => props.onChange(e.target.value)}>
-          <option value="" hidden>
+          <option value="defaultValue" hidden>
             {props.placeholder}
           </option>
           {props.clinics?.items?.map((c) => (

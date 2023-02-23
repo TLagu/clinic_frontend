@@ -22,14 +22,23 @@ export const Account = () => {
   const [user, setUser] = useState<UserDto | null>(null);
   const [clinicItems, setClinicItems] = useState<ClinicItems | null>(null);
 
-  const fetchUser = useCallback(async () => {
+  const [password, setPassword] = useState<string>("");
+  const [email, setEmail] = useState<string>("");
+  const [clinic, setClinic] = useState<string>("");
+  const [firstName, setFirstName] = useState<string>("");
+  const [secondName, setSecondName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
+  const [pesel, setPesel] = useState<string>("");
+  const [idNumber, setIdNumber] = useState<string>("");
+  const [birthDay, setBirthDay] = useState<string>("");
+  const [nip, setNip] = useState<string>("");
+
+  const fetchData = useCallback(async () => {
     if (currentUser?.username) {
       const userDetails = await UserDetailsApi.getUser(currentUser?.username);
       setUser(userDetails.data);
       const allClinics = await ClinicApi.getDictionaryClinic();
       setClinicItems(allClinics.data);
-
-      console.log(userDetails);
 
       setEmail(userDetails.data.email);
       setClinic(
@@ -46,19 +55,8 @@ export const Account = () => {
   }, [currentUser?.username]);
 
   useEffect(() => {
-    fetchUser();
-  }, [fetchUser]);
-
-  const [password, setPassword] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [clinic, setClinic] = useState<string>("");
-  const [firstName, setFirstName] = useState<string>("");
-  const [secondName, setSecondName] = useState<string>("");
-  const [lastName, setLastName] = useState<string>("");
-  const [pesel, setPesel] = useState<string>("");
-  const [idNumber, setIdNumber] = useState<string>("");
-  const [birthDay, setBirthDay] = useState<string>("");
-  const [nip, setNip] = useState<string>("");
+    fetchData();
+  }, [fetchData]);
 
   const [isPasswordValid, setIsPasswordValid] = useState<boolean>(true);
   const [isEmailValid, setIsEmailValid] = useState<boolean>(true);

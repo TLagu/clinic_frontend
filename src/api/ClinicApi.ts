@@ -13,6 +13,7 @@ export class ClinicApi {
         },
       }
     );
+
   static getDictionaryClinic = async () =>
     await authorizedApi.get<ClinicItems>("/info/getDictionaryClinic");
 }
