@@ -8,6 +8,7 @@ import { ScheduleItems } from "models/api/company/ScheduleDto";
 import { UserDto } from "models/api/company/UserDto";
 import { useCallback, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { DoctorContainer, DoctorWrapper } from "../Doctor.style";
 import {
   Center,
   DataContainer,
@@ -130,30 +131,34 @@ export const Schedule = () => {
   }
 
   return (
-    <ScheduleContainer>
-      <StyledHeading>
-        {schedule?.date && formatDate(schedule.date)}
-      </StyledHeading>
-      <ScheduleWrapper>
-        <LeftSide onClick={onBeforeClicked}>
-          <ArrowLeftIcon style={{ height: "36px", width: "36px" }} />
-        </LeftSide>
-        <Center>
-          <ItemContainer>
-            {schedule?.items.map((s) =>
-              createLineFromArray(
-                s.uuid,
-                s.startTime,
-                s.endTime,
-                !s.appointment ? "" : s.appointment
-              )
-            )}
-          </ItemContainer>
-        </Center>
-        <RightSide onClick={onAfterClicked}>
-          <ArrowRightIcon style={{ height: "36px", width: "36px" }} />
-        </RightSide>
-      </ScheduleWrapper>
-    </ScheduleContainer>
+    <DoctorContainer>
+      <DoctorWrapper>
+        <ScheduleContainer>
+          <StyledHeading>
+            {schedule?.date && formatDate(schedule.date)}
+          </StyledHeading>
+          <ScheduleWrapper>
+            <LeftSide onClick={onBeforeClicked}>
+              <ArrowLeftIcon style={{ height: "36px", width: "36px" }} />
+            </LeftSide>
+            <Center>
+              <ItemContainer>
+                {schedule?.items.map((s) =>
+                  createLineFromArray(
+                    s.uuid,
+                    s.startTime,
+                    s.endTime,
+                    !s.appointment ? "" : s.appointment
+                  )
+                )}
+              </ItemContainer>
+            </Center>
+            <RightSide onClick={onAfterClicked}>
+              <ArrowRightIcon style={{ height: "36px", width: "36px" }} />
+            </RightSide>
+          </ScheduleWrapper>
+        </ScheduleContainer>
+      </DoctorWrapper>
+    </DoctorContainer>
   );
 };

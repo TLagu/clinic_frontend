@@ -6,13 +6,15 @@ import { Navbar } from "components/navbar/Navbar";
 import { ProtectedRoute } from "components/ProtectedRoute";
 import { UnauthorizedRoute } from "components/UnauthorizedRoute";
 import { Admin } from "components/admin/Admin";
-import { Doctor } from "components/doctor/Doctor";
 import { Secretary } from "components/secretary/Secretary";
 import { Patient } from "components/patient/Patient";
 import { Clinics } from "components/clinics/Clinics";
 import { News } from "components/news/News";
 import { Company } from "components/contact/Contact";
 import { Register } from "components/register/Register";
+import { Schedule } from "components/doctor/schedule/Schedule";
+import { Account } from "components/doctor/account/Account";
+import { Appointment } from "components/doctor/appointment/Appointment";
 
 export const AppRouter = () => {
   return (
@@ -49,10 +51,26 @@ export const AppRouter = () => {
           }
         ></Route>
         <Route
-          path="/doctor"
+          path="/doctor_appointment"
           element={
             <ProtectedRoute>
-              <Doctor />
+              <Appointment />
+            </ProtectedRoute>
+          }
+        ></Route>
+        <Route
+          path="/doctor_schedule"
+          element={
+            <ProtectedRoute>
+              <Schedule />
+            </ProtectedRoute>
+          }
+        ></Route>
+        <Route
+          path="/doctor_account"
+          element={
+            <ProtectedRoute>
+              <Account />
             </ProtectedRoute>
           }
         ></Route>

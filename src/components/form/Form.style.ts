@@ -4,14 +4,13 @@ import { FONT_COLOR } from "constants/constants";
 export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  margin: 0 auto;
 `;
 
 export const StyledHeading = styled.span`
   font-size: 16px;
   font-weight: 600;
-  margin-top: 12px;
-  margin-bottom: 12px;
+  margin: 12px auto;
   color: ${FONT_COLOR};
 `;
 
@@ -39,7 +38,7 @@ export const RightSide = styled.div`
 `;
 
 export const FormInput = styled.input`
-  width: 350px;
+  width: 500px;
   padding: 6px 12px;
   font-size: 18px;
   border-radius: 4px;
@@ -49,7 +48,7 @@ export const FormInput = styled.input`
 `;
 
 export const FormSelect = styled.select`
-  width: 350px;
+  width: 500px;
   padding: 6px 12px;
   font-size: 18px;
   border-radius: 4px;

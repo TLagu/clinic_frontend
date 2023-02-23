@@ -37,3 +37,33 @@ export const NavbarIcons = styled.div`
   flex-direction: row;
   gap: 16px;
 `;
+
+export const NavbarSubmenuContainer = styled.div`
+  display: none;
+  min-width: 100%;
+  background-color: #ffffff;
+  padding: 16px 16px;
+  margin-left: 10px;
+  ${NavbarLink} {
+    padding: 10px;
+  }
+`;
+
+export const NavbarMainContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  gap: 40px;
+`;
+
+export const NavbarMainWrapper = styled.div`
+  position: relative;
+  ${NavbarSubmenuContainer} {
+    display: none;
+    position: absolute;
+  }
+  &:hover ${NavbarSubmenuContainer} {
+    display: flex;
+    flex-direction: column;
+  }
+`;

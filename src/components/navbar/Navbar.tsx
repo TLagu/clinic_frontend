@@ -6,6 +6,9 @@ import {
   NavbarLink,
   NavbarLinks,
   NavbarLogo,
+  NavbarMainContainer,
+  NavbarMainWrapper,
+  NavbarSubmenuContainer,
 } from "./Navbar.style";
 import { useContext } from "react";
 import { Outlet } from "react-router-dom";
@@ -26,7 +29,19 @@ export const Navbar = () => {
         case RoleType.ROLE_ADMIN:
           return <NavbarLink to={"/admin"}>Panel administratora</NavbarLink>;
         case RoleType.ROLE_DOCTOR:
-          return <NavbarLink to={"/doctor"}>Panel lekarza</NavbarLink>;
+          //          return <NavbarLink to={"/doctor"}>Panel lekarza</NavbarLink>;
+          return (
+            <NavbarMainContainer>
+              <NavbarMainWrapper>
+                Panel lekarza
+                <NavbarSubmenuContainer>
+                  <NavbarLink to={"/doctor_appointment"}>Wizyta</NavbarLink>
+                  <NavbarLink to={"/doctor_schedule"}>Harmonogram</NavbarLink>
+                  <NavbarLink to={"/doctor_account"}>Konto</NavbarLink>
+                </NavbarSubmenuContainer>
+              </NavbarMainWrapper>
+            </NavbarMainContainer>
+          );
         case RoleType.ROLE_SECRETARY:
           return <NavbarLink to={"/secretary"}>Panel sekretariatu</NavbarLink>;
         case RoleType.ROLE_PATIENT:

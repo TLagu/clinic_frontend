@@ -5,6 +5,7 @@ export const ScheduleContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width: 100%;
 `;
 
 export const ScheduleWrapper = styled.div`
@@ -19,15 +20,16 @@ export const LeftSide = styled.div`
   width: 50px;
   padding: 5px;
   margin: 5px;
-  background-color: #ffffff;
   justify-content: center;
   align-items: center;
+  border: 1px solid ${FONT_COLOR};
+  border-radius: 8px;
 `;
 
 export const Center = styled.div`
   display: flex;
   flex-direction: column;
-  width: 400px;
+  width: 750px;
   padding: 5px;
   margin: 5px;
 `;
@@ -38,16 +40,16 @@ export const RightSide = styled.div`
   width: 50px;
   padding: 5px;
   margin: 5px;
-  background-color: #ffffff;
   justify-content: center;
   align-items: center;
+  border: 1px solid ${FONT_COLOR};
+  border-radius: 8px;
 `;
 
-export const StyledHeading = styled.span`
+export const StyledHeading = styled.div`
   font-size: 16px;
   font-weight: 600;
-  margin-top: 12px;
-  margin-bottom: 12px;
+  margin: 12px auto;
   color: ${FONT_COLOR};
 `;
 
@@ -59,20 +61,28 @@ export const ItemContainer = styled.div`
 export const DataContainer = styled.div`
   display: flex;
   flex-direction: row;
-  background-color: #ffffff;
 
-  padding: 5px;
   margin: 5px;
   border-radius: 8px;
   justify-content: center;
 `;
 
-export const InfoFree = styled.span`
+export const InfoFree = styled.div`
+  width: 100%;
+  text-align: center;
+  padding: 8px;
+  border: 1px solid ${FONT_COLOR};
   color: ${FONT_COLOR};
+  border-radius: 8px;
 `;
 
 export const InfoUsed = styled.span`
+  width: 100%;
+  text-align: center;
+  padding: 8px;
+  border: 1px solid red;
   color: red;
+  border-radius: 8px;
 `;
 
 export const LineHighlighter = styled.text`
