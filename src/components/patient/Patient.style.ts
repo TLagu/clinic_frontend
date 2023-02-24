@@ -20,12 +20,19 @@ export const PatientWrapper = styled.div`
 export const LeftSide = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  
   padding-right: 16px;
   border: 1px solid ${FONT_COLOR};
   padding: 10px;
-  // box-shadow: 10px 5px 5px ${FONT_COLOR};
   width: 250px;
   border-radius: 10px;
+`;
+
+export const LeftSideDivider = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
 `;
 
 export const HiText = styled.p`
@@ -34,8 +41,7 @@ export const HiText = styled.p`
   line-height: 2em;
   font-weight: normal;
   text-decoration: none;
-  justify-content: center;
-  margin: 0 0 20 0;
+  justify-content: space-between;
 `;
 
 export const NameText = styled.p`

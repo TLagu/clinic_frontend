@@ -12,12 +12,14 @@ import {
   RightSide,
   Option,
   NameText,
+  LeftSideDivider,
 } from "./Patient.style";
 import { Schedule } from "./schedule/Schedule";
 import UserIcon from "icons/UserIcon";
 import CalendarIcon from "icons/CalendarIcon";
 import AppointmentIcon from "icons/AppointmentIcon";
 import { Account } from "./account/Account";
+import PatientAccountSmile from "icons/PatientAccountSmile";
 
 export const Patient = () => {
   const [user, setUser] = useState<UserDto | null>(null);
@@ -61,7 +63,8 @@ export const Patient = () => {
     <PatientContainer>
       <PatientWrapper>
         <LeftSide>
-          <HiText>Dzień dobry ;-)</HiText>
+          <LeftSideDivider>
+          <HiText>Dzień dobry<PatientAccountSmile /> </HiText>
           <NameText>
             {[user?.userAppDetails?.firstName, user?.userAppDetails?.secondName]
               .filter(Boolean)
@@ -70,7 +73,8 @@ export const Patient = () => {
           <SurnameText>
             {[user?.userAppDetails?.lastName].filter(Boolean).join(" ")}
           </SurnameText>
-
+          </LeftSideDivider>
+          <LeftSideDivider>
           <Option onClick={() => setSection(PatientPageSection.MedicalVisit)}>
             <AppointmentIcon />
             <span>Wizyta</span>
@@ -83,8 +87,8 @@ export const Patient = () => {
             <UserIcon />
             <span>Konto</span>
           </Option>
+          </LeftSideDivider>
         </LeftSide>
-
         <RightSide>{mapSectionToComponent()}</RightSide>
       </PatientWrapper>
     </PatientContainer>
