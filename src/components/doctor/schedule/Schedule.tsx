@@ -1,3 +1,4 @@
+import { ClinicApi } from "api/ClinicApi";
 import { ScheduleApi } from "api/ScheduleApi";
 import { UserDetailsApi } from "api/UserDetailsApi";
 import { Loader } from "components/clinics/Clinics.style";
@@ -5,7 +6,10 @@ import { DictionaryItems } from "components/common/DictionaryItems";
 import UserContext from "context/UserContext";
 import ArrowLeftIcon from "icons/ArrowLeft";
 import ArrowRightIcon from "icons/ArrowRight";
-import { ScheduleDto, ScheduleItems } from "models/api/company/ScheduleDto";
+import {
+  BasicScheduleDto,
+  ScheduleItems,
+} from "models/api/company/ScheduleDto";
 import { UserDto } from "models/api/company/UserDto";
 import { useCallback, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -33,6 +37,7 @@ export const Schedule = () => {
   const [patientItems, setPatientItems] = useState<DictionaryItems | null>(
     null
   );
+  const [clinicItems, setClinicItems] = useState<DictionaryItems | null>(null);
 
   const currentDay = new Date(Math.floor(Date.now()));
 
@@ -94,16 +99,31 @@ export const Schedule = () => {
     fetchPatient();
   }, [fetchPatient, navigate]);
 
+  const fetchClinic = useCallback(async () => {
+    if (currentUser?.username) {
+      try {
+        setIsLoading(true);
+        const clinics = await ClinicApi.getDictionaryClinic();
+        setClinicItems(clinics.data);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+  }, [currentUser?.username]);
+
+  useEffect(() => {
+    fetchClinic();
+  }, [fetchClinic, navigate]);
+
   const fetchSchedule = useCallback(async () => {
     try {
       if (user?.uuid) {
         setIsLoading(true);
         const scheduleResult = await ScheduleApi.getscheduleByDay(
           formattedDate,
-          !user?.uuid ? "" : user?.uuid
+          user?.uuid as string
         );
         setSchedule(scheduleResult.data);
-        console.log(scheduleResult);
       }
     } finally {
       setIsLoading(false);
@@ -130,30 +150,28 @@ export const Schedule = () => {
     return <Loader />;
   }
 
-  //  const [showResults, setShowResults] = useState<boolean>(true);
-  //  const onClick = () => setShowResults(!showResults);
-
-  function createLineFromArray(schedule: ScheduleDto) {
+  function createLineFromArray(schedule: BasicScheduleDto) {
     return (
       <DataContainer key={schedule.uuid}>
         {!schedule.appointment ? (
           <InfoFree>
-            {formatTime(schedule.startTime) +
+            {formatTime(schedule.startTime as Date) +
               " - " +
-              formatTime(schedule.endTime) +
+              formatTime(schedule.endTime as Date) +
               " (Wolne)"}
           </InfoFree>
         ) : (
           <InfoUsed>
-            {formatTime(schedule.startTime) +
+            {formatTime(schedule.startTime as Date) +
               " - " +
-              formatTime(schedule.endTime) +
+              formatTime(schedule.endTime as Date) +
               " (Wizyta)"}
             <Appointment
               key={schedule.uuid}
               patients={patientItems as any}
+              clinics={clinicItems as any}
               visible={false}
-              appointment={schedule.appointment}
+              appointmentUuid={schedule.appointment}
             />
           </InfoUsed>
         )}

@@ -1,4 +1,4 @@
-import { ScheduleItems } from "models/api/company/ScheduleDto";
+import { AppointmentDto, ScheduleItems } from "models/api/company/ScheduleDto";
 import { authorizedApi } from "hooks/withAxiosIntercepted";
 
 export class ScheduleApi {
@@ -9,4 +9,12 @@ export class ScheduleApi {
         userUuid: userUuid,
       },
     });
+
+  static getAppointmentByUuid = async (uuid: string) =>
+    await authorizedApi.get<AppointmentDto>("/schedule/getAppointmentByUuid", {
+      params: { uuid: uuid },
+    });
+
+  static updateSchedule = async (request: AppointmentDto) =>
+    await authorizedApi.put("/schedule/doctorSchedule", request);
 }

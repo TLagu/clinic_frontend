@@ -12,4 +12,7 @@ export class UserDetailsApi {
 
   static getDictionaryPatients = async () =>
     await authorizedApi.get<DictionaryItems>("/user/getDictionaryPatients");
+
+  static getDictionaryDoctors = async () =>
+    await authorizedApi.get<DictionaryItems>("/user/getDictionaryDoctors");
 }

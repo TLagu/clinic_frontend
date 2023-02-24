@@ -76,13 +76,21 @@ export type AppointmentDto = {
 
 export type ScheduleDto = {
   uuid: string;
-  userUuid: string;
-  startTime: Date;
-  endTime: Date;
+  userUuid?: string;
+  startTime?: Date;
+  endTime?: Date;
   appointment?: AppointmentDto;
 };
 
+export type BasicScheduleDto = {
+  uuid: string;
+  userUuid?: string;
+  startTime?: Date;
+  endTime?: Date;
+  appointment?: string;
+};
+
 export type ScheduleItems = {
-  items: ScheduleDto[];
+  items: BasicScheduleDto[];
   date: Date;
 };

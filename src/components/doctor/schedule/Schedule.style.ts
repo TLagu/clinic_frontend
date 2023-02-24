@@ -81,7 +81,6 @@ export const InfoUsed = styled.span`
   text-align: center;
   padding: 8px;
   border: 1px solid red;
-  color: red;
   border-radius: 8px;
 `;
 

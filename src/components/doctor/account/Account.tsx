@@ -17,6 +17,7 @@ import { FormLineSelect } from "components/form/FormLineSelect";
 import { isAccountValid } from "./AccountValidation";
 import { DoctorContainer, DoctorWrapper } from "../Doctor.style";
 import { DictionaryItems } from "components/common/DictionaryItems";
+import { ClinicDto } from "models/api/company/ClinicDto";
 
 export const Account = () => {
   const { currentUser } = useContext(UserContext);
@@ -42,9 +43,7 @@ export const Account = () => {
       setClinicItems(allClinics.data);
 
       setEmail(userDetails.data.email);
-      setClinic(
-        userDetails.data.clinic === null ? "" : userDetails.data.clinic
-      );
+      setClinic(userDetails.data.clinic as string);
       setFirstName(userDetails.data.userAppDetails.firstName);
       setSecondName(userDetails.data.userAppDetails.secondName);
       setLastName(userDetails.data.userAppDetails.lastName);
@@ -74,14 +73,13 @@ export const Account = () => {
   const onSaveClicked = useCallback(async () => {
     try {
       const userRequest: UserDto = {
-        uuid: user?.uuid != null ? user.uuid : "",
+        uuid: user?.uuid as string,
         password: password,
         username: "",
         email: email,
         roles: [],
         userAppDetails: {
-          uuid:
-            user?.userAppDetails?.uuid != null ? user.userAppDetails.uuid : "",
+          uuid: user?.userAppDetails?.uuid as string,
           firstName: firstName,
           secondName: secondName,
           lastName: lastName,
@@ -92,7 +90,6 @@ export const Account = () => {
         },
         clinic: clinic,
       };
-      console.log(userRequest);
       await UserApi.updateUser(userRequest);
       toast.success("Poprawnie zapisano zmiany.", {
         position: toast.POSITION.TOP_RIGHT,

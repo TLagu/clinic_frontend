@@ -3,8 +3,8 @@ import { FormInput, LeftSide, RightSide, ValidationError } from "./Form.style";
 interface FormLineInputProps {
   label: string;
   placeholder: string;
-  type: string;
-  value: string;
+  type?: string;
+  value?: string;
   onChange: (value: string) => void;
   validationResult: boolean;
   validationMessage: string;

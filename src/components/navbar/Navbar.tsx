@@ -35,7 +35,6 @@ export const Navbar = () => {
               <NavbarMainWrapper>
                 Panel lekarza
                 <NavbarSubmenuContainer>
-                  <NavbarLink to={"/doctor_appointment"}>Wizyta</NavbarLink>
                   <NavbarLink to={"/doctor_schedule"}>Harmonogram</NavbarLink>
                   <NavbarLink to={"/doctor_account"}>Konto</NavbarLink>
                 </NavbarSubmenuContainer>
