@@ -5,12 +5,11 @@ import { ClinicDto } from "models/api/company/ClinicDto";
 import { PaginationItem } from "components/common/store/PaginationItem";
 import {
   ItemsContainer,
-  Loader,
   PaginationContainer,
   ClinicsContainer,
-  StyledHeading,
 } from "./Clinics.style";
 import { ClinicItem } from "./ClinicItem";
+import { Loader, StyledHeading } from "components/global.styles";
 
 export const Clinics = () => {
   const [clinics, setClinics] = useState<PageableResponse<ClinicDto> | null>(

@@ -1,13 +1,9 @@
 import { CompanyApi } from "api/CompanyApi";
 import { Company } from "components/company/Company";
+import { Loader, StyledHeading } from "components/global.styles";
 import { CompanyDto } from "models/api/company/CompanyDto";
 import { useCallback, useEffect, useState } from "react";
-import {
-  CompanyContainer,
-  ItemsContainer,
-  Loader,
-  StyledHeading,
-} from "./Contact.style";
+import { CompanyContainer, ItemsContainer } from "./Contact.style";
 
 export const Contact = () => {
   const [company, setCompany] = useState<CompanyDto | null>(null);

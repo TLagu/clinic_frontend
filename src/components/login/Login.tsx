@@ -2,11 +2,9 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 import { AuthApi } from "api/AuthApi";
 import {
   InputContainer,
-  LoginButton,
   LoginContainer,
   LoginInput,
   RegisterLink,
-  StyledHeading,
   ValidationError,
 } from "./Login.style";
 import { toast } from "react-toastify";
@@ -14,6 +12,7 @@ import { ACCESS_TOKEN } from "constants/constants";
 // tsconfig.json
 import UserContext from "context/UserContext";
 import { Link, useNavigate } from "react-router-dom";
+import { LoginButton, StyledHeading } from "components/global.styles";
 
 export const Login = () => {
   const [username, setUsername] = useState<string>("");

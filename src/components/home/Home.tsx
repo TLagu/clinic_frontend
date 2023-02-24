@@ -1,15 +1,17 @@
+import {
+  BlueTextHighlighter,
+  LoginButton,
+  NestedTextContainer,
+  TextContainer,
+  TextHeader,
+} from "components/global.styles";
 import { RegisterButton } from "components/register/Register.style";
 import { useNavigate } from "react-router-dom";
 import {
-  BlueTextHighlighter,
   BookmarkLink,
   ButtonContainer,
   HomeContainer,
-  LoginButton,
-  NestedTextContainer,
   StyledHeading,
-  TextContainer,
-  TextHeader,
 } from "./Home.style";
 
 export const Home = () => {
@@ -62,7 +64,8 @@ export const Home = () => {
           <BookmarkLink to={"/contact"}> "Kontakt" </BookmarkLink>
         </BlueTextHighlighter>
         znajdziecie Państwo dane kontaktowe do naszej Centrali w Warszawie. Dane
-        kontaktowe oddziałów znajdują się w "Naszych Klinikach". (Dostęp wymaga zalogowania). 
+        kontaktowe oddziałów znajdują się w "Naszych Klinikach". (Dostęp wymaga
+        zalogowania).
       </NestedTextContainer>
       <TextHeader>Więcej informacji?</TextHeader>
       <TextContainer>

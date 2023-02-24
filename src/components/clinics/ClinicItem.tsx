@@ -1,9 +1,9 @@
+import { LeftSide } from "components/global.styles";
 import { ClinicDto } from "models/api/company/ClinicDto";
 import {
   DataContainer,
   ImportantInfo,
   ItemContainer,
-  LeftSide,
   LineHighlighter,
   RightSide,
 } from "./ClinicItem.style";

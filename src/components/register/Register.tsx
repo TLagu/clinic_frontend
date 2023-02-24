@@ -1,4 +1,5 @@
 import { AuthApi } from "api/AuthApi";
+import { StyledHeading } from "components/global.styles";
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -6,7 +7,6 @@ import {
   InputContainer,
   RegisterContainer,
   RegisterInput,
-  StyledHeading,
   RegisterButton,
   ValidationError,
 } from "./Register.style";

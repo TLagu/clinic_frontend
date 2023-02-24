@@ -20,15 +20,6 @@ export const DataContainer = styled.div`
   justify-content: space-between;
 `;
 
-export const LeftSide = styled.div`
-  display: flex;
-  flex-direction: column;
-  text-align: right;
-  gap: 8px;
-  margin: 5px 0;
-  width: 250px;
-`;
-
 export const RightSide = styled.div`
   text-align: left;
   margin: 5px 0;

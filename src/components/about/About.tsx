@@ -1,12 +1,12 @@
 import {
-  AboutContainer,
+  BlackTextHighlighter,
+  BlueTextHighlighter,
   NestedTextContainer,
   StyledHeading,
-  BlackTextHighlighter,
   TextContainer,
   TextHeader,
-  BlueTextHighlighter,
-} from "./About.style";
+} from "components/global.styles";
+import { AboutContainer } from "./About.style";
 
 export const About = () => {
   return (

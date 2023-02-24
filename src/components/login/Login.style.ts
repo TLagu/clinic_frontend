@@ -9,14 +9,6 @@ export const LoginContainer = styled.div`
   margin-top: 64px;
 `;
 
-export const StyledHeading = styled.span`
-  font-size: 36px;
-  font-weight: 600;
-  margin-top: 32px;
-  margin-bottom: 8px;
-  color: ${FONT_COLOR};
-`;
-
 export const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -34,34 +26,14 @@ export const LoginInput = styled.input`
   outline: transparent solid 2px;
 `;
 
-export const LoginButton = styled.button`
-  padding: 16px;
-  border: 0;
-  background-color: #24a0ed;
-  border-radius: 8px;
-  color: white;
-  font-weight: 600;
-  font-size: 16px;
-  cursor: pointer;
-
-  &:disabled {
-    background-color: #cccccc;
-    color: #666666;
-  }
-
-  &:hover {
-    filter: brightness(85%);
-  }
-`;
-
 export const RegisterLink = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;  
+  align-items: center;
   padding: 10px;
   font-weight: 600;
   color: ${FONT_COLOR};
-`
+`;
 
 export const ValidationError = styled.span`
   color: red;

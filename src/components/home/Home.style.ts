@@ -22,61 +22,11 @@ export const StyledHeading = styled.span`
   align-items: center;
 `;
 
-export const TextHeader = styled.h3`
-  justify-content: center;
-  margin-top: 40px;
-  margin-bottom: 40px;
-  max-width: 850px;
-`;
-
-export const TextContainer = styled.div`
-  font-size: 20px;
-  margin-left: 40px;
-  margin-right: 40px;
-  padding: 10px;
-  max-width: 1000px;
-  text-align: left;
-`;
-
-export const NestedTextContainer = styled.div`
-  font-size: 20px;
-  margin-top: 12px;
-  margin-bottom: 12px;
-  max-width: 1000px;
-  text-align: left;
-`;
-
 export const ButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
   gap: 60px;
   margin-bottom: 25px;
-`;
-
-export const LoginButton = styled.button`
-  padding: 16px;
-  border: 0;
-  background-color: #24a0ed;
-  border-radius: 8px;
-  color: white;
-  font-weight: 600;
-  font-size: 16px;
-  cursor: pointer;
-
-  &:disabled {
-    background-color: #cccccc;
-    color: #666666;
-  }
-
-  &:hover {
-    filter: brightness(85%);
-  }
-`;
-
-export const BlueTextHighlighter = styled.span`
-  font-weight: 600;
-  font-style: italic;
-  color: ${FONT_COLOR};
 `;
 
 export const BookmarkLink = styled(Link)`

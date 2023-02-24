@@ -1,10 +1,10 @@
+import { LeftSide } from "components/global.styles";
 import { CompanyDto } from "models/api/company/CompanyDto";
 import {
   DataContainer,
   ImportantInfo,
   ItemContainer,
   ItemNestedContainer,
-  LeftSide,
   LineHighlighter,
   RightSide,
 } from "./Company.style";

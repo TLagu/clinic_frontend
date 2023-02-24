@@ -1,6 +1,11 @@
-import { PaginationItem } from "components/store/PaginationItem";
+import { PaginationItem } from "components/common/store/PaginationItem";
 import { UserDto } from "models/api/company/UserDto";
-import { ButtonPanelTitle, DisplayContainer, ItemsContainer, PaginationContainer } from "../Admin.style";
+import {
+  ButtonPanelTitle,
+  DisplayContainer,
+  ItemsContainer,
+  PaginationContainer,
+} from "../Admin.style";
 import { UserItem } from "./UserItem";
 
 interface ListUserProps {
@@ -8,8 +13,9 @@ interface ListUserProps {
 }
 
 export const ListUsers = (props: ListUserProps) => {
-  return ( <div>
-  {/* <DisplayContainer>
+  return (
+    <div>
+      {/* <DisplayContainer>
   <ButtonPanelTitle>Aktualna lista użytkowników:</ButtonPanelTitle>
   {users?.content && users.content.length > 0 ? (
     <>
@@ -32,6 +38,6 @@ export const ListUsers = (props: ListUserProps) => {
     <h2>Brak użytkowników do wyświetlenia</h2>
   )}          
 </DisplayContainer>  */}
-</div> 
-  )
+    </div>
+  );
 };

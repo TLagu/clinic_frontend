@@ -1,5 +1,4 @@
 import { ScheduleApi } from "api/ScheduleApi";
-import { Loader } from "components/clinics/Clinics.style";
 import { DictionaryItems } from "components/common/DictionaryItems";
 import {
   FormContainer,
@@ -8,6 +7,7 @@ import {
 } from "components/common/form/Form.style";
 import { FormLineInput } from "components/common/form/FormLineInput";
 import { FormLineLabels } from "components/common/form/FormLineLabels";
+import { Loader } from "components/global.styles";
 import { AppointmentDto } from "models/api/company/ScheduleDto";
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";

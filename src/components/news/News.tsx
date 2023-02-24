@@ -1,13 +1,15 @@
 import {
+  BlackTextHighlighter,
+  BlueTextHighlighter,
+  NestedTextContainer,
+  StyledHeading,
+} from "components/global.styles";
+import {
   NewsContainer,
   NewsTimestamp,
   NewsHeader,
-  StyledHeading,
   NewsHeaderContainer,
   NewsTextContainer,
-  BlueTextHighlighter,
-  BlackTextHighlighter,
-  NestedTextContainer,
 } from "./News.style";
 
 export const News = () => {

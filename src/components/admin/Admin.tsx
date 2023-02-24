@@ -1,5 +1,5 @@
 import { UserApi } from "api/UserApi";
-import { PrimaryButton } from "components/global.styles";
+import { Loader, PrimaryButton, StyledHeading } from "components/global.styles";
 import { PaginationItem } from "components/common/store/PaginationItem";
 import { UserDto } from "models/api/company/UserDto";
 import { PageableResponse } from "models/api/PageableResponse";
@@ -11,9 +11,7 @@ import {
   ButtonPanelTitle,
   DisplayContainer,
   ItemsContainer,
-  Loader,
   PaginationContainer,
-  StyledHeading,
   UserManagementContainer,
 } from "./Admin.style";
 

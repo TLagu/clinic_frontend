@@ -1,4 +1,5 @@
-import { SecretaryContainer, StyledHeading } from "./Secretary.style";
+import { StyledHeading } from "components/global.styles";
+import { SecretaryContainer } from "./Secretary.style";
 
 export const Secretary = () => {
   return (

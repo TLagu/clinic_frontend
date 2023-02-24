@@ -1,4 +1,3 @@
-import { FONT_COLOR } from "constants/constants";
 import styled from "styled-components";
 
 export const RegisterContainer = styled.div`
@@ -9,17 +8,9 @@ export const RegisterContainer = styled.div`
   margin-top: 64px;
 `;
 
-export const StyledHeading = styled.span`
-  font-size: 36px;
-  font-weight: 600;
-  margin-top: 32px;
-  margin-bottom: 8px;
-  color: ${FONT_COLOR};
-`;
-
 export const InputContainer = styled.div`
   display: flex;
-  flex-direction: column;ś
+  flex-direction: column;
   gap: 12px;
   width: 20rem;
   margin-top: 16px;

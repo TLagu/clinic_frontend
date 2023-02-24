@@ -1,15 +1,11 @@
 import { ClinicApi } from "api/ClinicApi";
 import { ScheduleApi } from "api/ScheduleApi";
 import { UserDetailsApi } from "api/UserDetailsApi";
-import { Loader } from "components/clinics/Clinics.style";
 import { DictionaryItems } from "components/common/DictionaryItems";
 import UserContext from "context/UserContext";
 import ArrowLeftIcon from "icons/ArrowLeft";
 import ArrowRightIcon from "icons/ArrowRight";
-import {
-  BasicScheduleDto,
-  ScheduleItems,
-} from "models/api/company/ScheduleDto";
+import { ScheduleItems } from "models/api/company/ScheduleDto";
 import { UserDto } from "models/api/company/UserDto";
 import { useCallback, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -17,19 +13,18 @@ import {
   MainPanelContainer,
   MainPanelWrapper,
 } from "components/common/MainPanel.style";
-import { Appointment } from "./appointment/DoctorAppointment";
 import {
   Center,
-  DataContainer,
-  InfoFree,
-  InfoUsed,
   ItemContainer,
   LeftSide,
   RightSide,
   ScheduleContainer,
   ScheduleWrapper,
   StyledHeading,
-} from "./DoctorSchedule.style";
+} from "components/common/schedule/Schedule.style";
+import { formatDate } from "components/common/Functions";
+import { CreateLineFromArray } from "components/common/schedule/CreateLineFromArray";
+import { Loader } from "components/global.styles";
 
 export const DoctorSchedule = () => {
   const { currentUser } = useContext(UserContext);
@@ -43,29 +38,6 @@ export const DoctorSchedule = () => {
   const [clinicItems, setClinicItems] = useState<DictionaryItems | null>(null);
 
   const currentDay = new Date(Math.floor(Date.now()));
-
-  function formatDate(date: Date) {
-    var d = new Date(date),
-      month = "" + (d.getMonth() + 1),
-      day = "" + d.getDate(),
-      year = d.getFullYear();
-
-    if (month.length < 2) month = "0" + month;
-    if (day.length < 2) day = "0" + day;
-
-    return [year, month, day].join("-");
-  }
-
-  function formatTime(date: Date) {
-    var d = new Date(date),
-      hour = "" + (d.getHours() + 1),
-      minute = "" + d.getMinutes();
-
-    if (hour.length < 2) hour = "0" + hour;
-    if (minute.length < 2) minute = "0" + minute;
-
-    return [hour, minute].join(":");
-  }
 
   const navigate = useNavigate();
 
@@ -153,37 +125,6 @@ export const DoctorSchedule = () => {
     return <Loader />;
   }
 
-  function createLineFromArray(schedule: BasicScheduleDto) {
-    return (
-      <DataContainer key={schedule.uuid}>
-        {!schedule.appointment ? (
-          <InfoFree>
-            {formatTime(schedule.startTime as Date) +
-              " - " +
-              formatTime(schedule.endTime as Date) +
-              " (Wolne)"}
-          </InfoFree>
-        ) : (
-          <InfoUsed>
-            <StyledHeading>
-              {formatTime(schedule.startTime as Date) +
-                " - " +
-                formatTime(schedule.endTime as Date) +
-                " (Wizyta)"}
-            </StyledHeading>
-            <Appointment
-              key={schedule.uuid}
-              patients={patientItems as any}
-              clinics={clinicItems as any}
-              visible={false}
-              appointmentUuid={schedule.appointment}
-            />
-          </InfoUsed>
-        )}
-      </DataContainer>
-    );
-  }
-
   return (
     <MainPanelContainer>
       <MainPanelWrapper>
@@ -197,7 +138,13 @@ export const DoctorSchedule = () => {
             </LeftSide>
             <Center>
               <ItemContainer>
-                {schedule?.items.map((s) => createLineFromArray(s))}
+                {schedule?.items.map((s) => (
+                  <CreateLineFromArray
+                    schedule={s}
+                    patientItems={patientItems as DictionaryItems}
+                    clinicItems={clinicItems as DictionaryItems}
+                  />
+                ))}
               </ItemContainer>
             </Center>
             <RightSide onClick={onAfterClicked}>

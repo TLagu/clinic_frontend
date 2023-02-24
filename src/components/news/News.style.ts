@@ -1,4 +1,3 @@
-import { FONT_COLOR } from "constants/constants";
 import styled from "styled-components";
 
 export const NewsContainer = styled.div`
@@ -7,13 +6,6 @@ export const NewsContainer = styled.div`
   align-items: center;
   flex-direction: column;
   margin-bottom: 64px;
-`;
-
-export const StyledHeading = styled.span`
-  font-size: 36px;
-  font-weight: 600;
-  margin-top: 32px;
-  color: ${FONT_COLOR};
 `;
 
 export const NewsHeaderContainer = styled.div`
@@ -36,21 +28,4 @@ export const NewsTimestamp = styled.div`
 export const NewsTextContainer = styled.div`
   font-size: 20px;
   max-width: 900px;
-`;
-
-export const NestedTextContainer = styled.div`
-  font-size: 20px;
-  margin-top: 8px;
-  margin-bottom: 8px;
-  max-width: 1000px;
-  text-align: left;
-`;
-
-export const BlueTextHighlighter = styled.span`
-  font-weight: 600;
-  color: ${FONT_COLOR};
-`;
-
-export const BlackTextHighlighter = styled.span`
-  font-weight: 600;
 `;
