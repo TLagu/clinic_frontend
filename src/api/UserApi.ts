@@ -1,9 +1,17 @@
 import axios from "axios";
 import { authorizedApi } from "hooks/withAxiosIntercepted";
 import { UserDto } from "models/api/company/UserDto";
+import { PageableResponse } from "models/api/PageableResponse";
 import { UserResponse } from "models/api/UserResponse";
 
 export class UserApi {
+  static getAllUsers = async (pageNumber: number) =>
+    await authorizedApi.get<PageableResponse<UserDto>>("/user/getAllUsers", {
+      params: {
+        page: pageNumber,
+      },
+    });
+
   static getUser = async () =>
     await authorizedApi.get<UserResponse>("/user/getUser");
 
