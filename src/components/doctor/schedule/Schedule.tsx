@@ -1,14 +1,16 @@
 import { ScheduleApi } from "api/ScheduleApi";
 import { UserDetailsApi } from "api/UserDetailsApi";
 import { Loader } from "components/clinics/Clinics.style";
+import { DictionaryItems } from "components/common/DictionaryItems";
 import UserContext from "context/UserContext";
 import ArrowLeftIcon from "icons/ArrowLeft";
 import ArrowRightIcon from "icons/ArrowRight";
-import { ScheduleItems } from "models/api/company/ScheduleDto";
+import { ScheduleDto, ScheduleItems } from "models/api/company/ScheduleDto";
 import { UserDto } from "models/api/company/UserDto";
 import { useCallback, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { DoctorContainer, DoctorWrapper } from "../Doctor.style";
+import { Appointment } from "./appointment/Appointment";
 import {
   Center,
   DataContainer,
@@ -28,6 +30,9 @@ export const Schedule = () => {
   const [schedule, setSchedule] = useState<ScheduleItems>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [formattedDate, setFormattedDate] = useState<string>("");
+  const [patientItems, setPatientItems] = useState<DictionaryItems | null>(
+    null
+  );
 
   const currentDay = new Date(Math.floor(Date.now()));
 
@@ -73,6 +78,22 @@ export const Schedule = () => {
     fetchDate();
   }, [fetchDate, navigate]);
 
+  const fetchPatient = useCallback(async () => {
+    if (currentUser?.username) {
+      try {
+        setIsLoading(true);
+        const patients = await UserDetailsApi.getDictionaryPatients();
+        setPatientItems(patients.data);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+  }, [currentUser?.username]);
+
+  useEffect(() => {
+    fetchPatient();
+  }, [fetchPatient, navigate]);
+
   const fetchSchedule = useCallback(async () => {
     try {
       if (user?.uuid) {
@@ -109,21 +130,31 @@ export const Schedule = () => {
     return <Loader />;
   }
 
-  function createLineFromArray(
-    uuid: string,
-    startTime: Date,
-    endTime: Date,
-    appointment: string
-  ) {
+  //  const [showResults, setShowResults] = useState<boolean>(true);
+  //  const onClick = () => setShowResults(!showResults);
+
+  function createLineFromArray(schedule: ScheduleDto) {
     return (
-      <DataContainer key={uuid}>
-        {!appointment ? (
+      <DataContainer key={schedule.uuid}>
+        {!schedule.appointment ? (
           <InfoFree>
-            {formatTime(startTime) + " - " + formatTime(endTime) + " (Wolne)"}
+            {formatTime(schedule.startTime) +
+              " - " +
+              formatTime(schedule.endTime) +
+              " (Wolne)"}
           </InfoFree>
         ) : (
           <InfoUsed>
-            {formatTime(startTime) + " - " + formatTime(endTime) + " (Wizyta)"}
+            {formatTime(schedule.startTime) +
+              " - " +
+              formatTime(schedule.endTime) +
+              " (Wizyta)"}
+            <Appointment
+              key={schedule.uuid}
+              patients={patientItems as any}
+              visible={false}
+              appointment={schedule.appointment}
+            />
           </InfoUsed>
         )}
       </DataContainer>
@@ -143,14 +174,7 @@ export const Schedule = () => {
             </LeftSide>
             <Center>
               <ItemContainer>
-                {schedule?.items.map((s) =>
-                  createLineFromArray(
-                    s.uuid,
-                    s.startTime,
-                    s.endTime,
-                    !s.appointment ? "" : s.appointment
-                  )
-                )}
+                {schedule?.items.map((s) => createLineFromArray(s))}
               </ItemContainer>
             </Center>
             <RightSide onClick={onAfterClicked}>

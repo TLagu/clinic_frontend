@@ -1,3 +1,4 @@
+import { DictionaryItems } from "components/common/DictionaryItems";
 import { authorizedApi } from "hooks/withAxiosIntercepted";
 import { UserDto } from "models/api/company/UserDto";
 
@@ -8,4 +9,7 @@ export class UserDetailsApi {
         username: username,
       },
     });
+
+  static getDictionaryPatients = async () =>
+    await authorizedApi.get<DictionaryItems>("/user/getDictionaryPatients");
 }

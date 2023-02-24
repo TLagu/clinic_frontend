@@ -1,11 +1,11 @@
-import { ClinicItems } from "components/common/ClinicItems";
+import { DictionaryItems } from "components/common/DictionaryItems";
 import { LeftSide, RightSide, FormSelect, ValidationError } from "./Form.style";
 
 interface FormLineSelectProps {
   label: string;
   onChange: (value: string) => void;
   placeholder: string;
-  clinics: ClinicItems;
+  dictionary: DictionaryItems;
   value: string;
   validationResult: boolean;
   validationMessage: string;
@@ -16,14 +16,15 @@ export const FormLineSelect = (props: FormLineSelectProps) => {
     <>
       <LeftSide>{props.label}</LeftSide>
       <RightSide>
-        <FormSelect onChange={(e) => props.onChange(e.target.value)}>
+        <FormSelect
+          value={props.value}
+          onChange={(e) => props.onChange(e.target.value)}
+        >
           <option value="defaultValue" hidden>
             {props.placeholder}
           </option>
-          {props.clinics?.items?.map((c) => (
-            <option selected={c.uuid === props.value} value={c.uuid}>
-              {c.itemName}
-            </option>
+          {props.dictionary?.items?.map((c) => (
+            <option value={c.uuid}>{c.itemName}</option>
           ))}
           placeholder={props.placeholder}
           value={props.value}

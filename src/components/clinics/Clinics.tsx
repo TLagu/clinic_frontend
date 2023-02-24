@@ -23,8 +23,8 @@ export const Clinics = () => {
     try {
       setIsLoading(true);
       const result = await ClinicApi.getAllClinics(pageNumber);
+      console.log(result.data);
       setClinics(result.data);
-      console.log(clinics);
     } finally {
       setIsLoading(false);
     }
@@ -41,6 +41,7 @@ export const Clinics = () => {
   if (isLoading) {
     return <Loader />;
   }
+
   return (
     <ClinicsContainer>
       <StyledHeading>Lista klinik</StyledHeading>
@@ -48,12 +49,16 @@ export const Clinics = () => {
         <>
           <ItemsContainer>
             {clinics?.content.map((x) => (
-              <ClinicItem clinic={x} />
+              <ClinicItem key={x.uuid} clinic={x} />
             ))}
           </ItemsContainer>
           <PaginationContainer>
             {Array.from({ length: clinics.totalPages }).map((x, i) => (
-              <PaginationItem onPageChanged={onPageChanged} number={i + 1} />
+              <PaginationItem
+                key={i}
+                onPageChanged={onPageChanged}
+                number={i + 1}
+              />
             ))}
           </PaginationContainer>
         </>

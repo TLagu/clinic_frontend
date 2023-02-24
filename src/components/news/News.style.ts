@@ -19,7 +19,6 @@ export const StyledHeading = styled.span`
 export const NewsHeaderContainer = styled.div`
   display: flex;
   flex-direction: column;
-
 `;
 
 export const NewsHeader = styled.h3`
@@ -47,11 +46,11 @@ export const NestedTextContainer = styled.div`
   text-align: left;
 `;
 
-export const BlueTextHighlighter = styled.text`
+export const BlueTextHighlighter = styled.span`
   font-weight: 600;
   color: ${FONT_COLOR};
 `;
 
-export const BlackTextHighlighter = styled.text`
+export const BlackTextHighlighter = styled.span`
   font-weight: 600;
 `;

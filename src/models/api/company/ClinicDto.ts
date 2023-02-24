@@ -3,6 +3,7 @@ import { ClinicPhoneDto } from "./ClinicPhoneDto";
 
 export type ClinicDto = {
   uuid: string;
+  company: string;
   province: string;
   district: string;
   community: string;

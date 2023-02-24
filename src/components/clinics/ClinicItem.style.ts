@@ -43,6 +43,6 @@ export const ImportantInfo = styled.span`
   margin-bottom: 30px;
 `;
 
-export const LineHighlighter = styled.text`
+export const LineHighlighter = styled.span`
   color: ${FONT_COLOR};
 `;

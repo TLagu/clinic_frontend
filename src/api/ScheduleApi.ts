@@ -1,4 +1,4 @@
-import { ScheduleItems } from "components/common/ScheduleDto";
+import { ScheduleItems } from "models/api/company/ScheduleDto";
 import { authorizedApi } from "hooks/withAxiosIntercepted";
 
 export class ScheduleApi {

@@ -10,18 +10,18 @@ import {
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { UserDto } from "models/api/company/UserDto";
-import { ClinicItems } from "components/common/ClinicItems";
 import { ClinicApi } from "api/ClinicApi";
 import { UserApi } from "api/UserApi";
 import { FormLineInput } from "components/form/FormLineInput";
 import { FormLineSelect } from "components/form/FormLineSelect";
-import { isAccountValidation } from "./AccountValidation";
+import { isAccountValid } from "./AccountValidation";
 import { DoctorContainer, DoctorWrapper } from "../Doctor.style";
+import { DictionaryItems } from "components/common/DictionaryItems";
 
 export const Account = () => {
   const { currentUser } = useContext(UserContext);
   const [user, setUser] = useState<UserDto | null>(null);
-  const [clinicItems, setClinicItems] = useState<ClinicItems | null>(null);
+  const [clinicItems, setClinicItems] = useState<DictionaryItems | null>(null);
 
   const [password, setPassword] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -129,43 +129,43 @@ export const Account = () => {
   ]);
 
   useEffect(() => {
-    setIsPasswordValid(isAccountValidation(password, "password"));
+    setIsPasswordValid(isAccountValid(password, "password"));
   }, [password]);
 
   useEffect(() => {
-    setIsEmailValid(isAccountValidation(email, "email"));
+    setIsEmailValid(isAccountValid(email, "email"));
   }, [email]);
 
   useEffect(() => {
-    setIsClinicValid(isAccountValidation(clinic, "clinic"));
+    setIsClinicValid(isAccountValid(clinic, "clinic"));
   }, [clinic]);
 
   useEffect(() => {
-    setIsFirstNameValid(isAccountValidation(firstName, "firstName"));
+    setIsFirstNameValid(isAccountValid(firstName, "firstName"));
   }, [firstName]);
 
   useEffect(() => {
-    setIsSecondNameValid(isAccountValidation(secondName, "secondName"));
+    setIsSecondNameValid(isAccountValid(secondName, "secondName"));
   }, [secondName]);
 
   useEffect(() => {
-    setIsLastNameValid(isAccountValidation(lastName, "lastName"));
+    setIsLastNameValid(isAccountValid(lastName, "lastName"));
   }, [lastName]);
 
   useEffect(() => {
-    setIsPeselValid(isAccountValidation(pesel, "pesel"));
+    setIsPeselValid(isAccountValid(pesel, "pesel"));
   }, [pesel]);
 
   useEffect(() => {
-    setIsIdNumberValid(isAccountValidation(idNumber, "idNumber"));
+    setIsIdNumberValid(isAccountValid(idNumber, "idNumber"));
   }, [idNumber]);
 
   useEffect(() => {
-    setIsBirthDayValid(isAccountValidation(birthDay, "birthDay"));
+    setIsBirthDayValid(isAccountValid(birthDay, "birthDay"));
   }, [birthDay]);
 
   useEffect(() => {
-    setIsNipValid(isAccountValidation(nip, "nip"));
+    setIsNipValid(isAccountValid(nip, "nip"));
   }, [nip]);
 
   return (
@@ -200,7 +200,7 @@ export const Account = () => {
               label="Adres e-mail:"
               onChange={(value) => setClinic(value)}
               placeholder="Klinika..."
-              clinics={clinicItems as any}
+              dictionary={clinicItems as any}
               value={clinic}
               validationResult={isClinicValid}
               validationMessage={`Wprowadź poprawnie adres e-mail.\nE-mail musi mieć minimum 5 znaków i maksimum 50.`}

@@ -1,7 +1,6 @@
 import { CompanyApi } from "api/CompanyApi";
-import { CompanyItem } from "components/company/CompanyItem";
+import { Company } from "components/company/Company";
 import { CompanyDto } from "models/api/company/CompanyDto";
-import { PageableResponse } from "models/api/PageableResponse";
 import { useCallback, useEffect, useState } from "react";
 import {
   CompanyContainer,
@@ -10,29 +9,25 @@ import {
   StyledHeading,
 } from "./Contact.style";
 
-export const Company = () => {
-  const [company, setCompany] = useState<PageableResponse<CompanyDto> | null>(
-    null
-  );
-  const [pageNumber, setPageNumber] = useState<number>(0);
+export const Contact = () => {
+  const [company, setCompany] = useState<CompanyDto | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const fetchProducts = useCallback(async () => {
+
+  const fetchCompany = useCallback(async () => {
     try {
-      setIsLoading(true);
-      const result = await CompanyApi.getCompanyData(pageNumber);
+      const result = await CompanyApi.getCompanyData();
       setCompany(result.data);
+      console.log("company");
+      console.log(company);
     } finally {
       setIsLoading(false);
     }
-  }, [pageNumber]);
-
-  const onPageChanged = (number: number) => {
-    setPageNumber(number - 1);
-  };
+  }, []);
 
   useEffect(() => {
-    fetchProducts();
-  }, [fetchProducts, pageNumber]);
+    fetchCompany();
+  }, [fetchCompany]);
+
   if (isLoading) {
     return <Loader />;
   }
@@ -40,17 +35,9 @@ export const Company = () => {
   return (
     <CompanyContainer>
       <StyledHeading>Kontakt</StyledHeading>
-      {company?.content && company.content.length > 0 ? (
-        <>
-          <ItemsContainer>
-            {company?.content.map((x) => (
-              <CompanyItem company={x} />
-            ))}
-          </ItemsContainer>
-        </>
-      ) : (
-        <h2>Brak danych</h2>
-      )}
+      <ItemsContainer>
+        <Company company={company as any} />
+      </ItemsContainer>
     </CompanyContainer>
   );
 };

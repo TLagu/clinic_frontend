@@ -10,11 +10,10 @@ import { Secretary } from "components/secretary/Secretary";
 import { Patient } from "components/patient/Patient";
 import { Clinics } from "components/clinics/Clinics";
 import { News } from "components/news/News";
-import { Company } from "components/contact/Contact";
+import { Contact } from "components/contact/Contact";
 import { Register } from "components/register/Register";
 import { Schedule } from "components/doctor/schedule/Schedule";
 import { Account } from "components/doctor/account/Account";
-import { Appointment } from "components/doctor/appointment/Appointment";
 
 export const AppRouter = () => {
   return (
@@ -25,7 +24,7 @@ export const AppRouter = () => {
         <Route path="/about" element={<About />}></Route>
         <Route path="/clinics" element={<Clinics />}></Route>
         <Route path="/news" element={<News />}></Route>
-        <Route path="/contact" element={<Company />}></Route>
+        <Route path="/contact" element={<Contact />}></Route>
         <Route
           path="/login"
           element={
@@ -47,14 +46,6 @@ export const AppRouter = () => {
           element={
             <ProtectedRoute>
               <Admin />
-            </ProtectedRoute>
-          }
-        ></Route>
-        <Route
-          path="/doctor_appointment"
-          element={
-            <ProtectedRoute>
-              <Appointment />
             </ProtectedRoute>
           }
         ></Route>

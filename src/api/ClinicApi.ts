@@ -1,7 +1,7 @@
 import { authorizedApi } from "hooks/withAxiosIntercepted";
 import { PageableResponse } from "models/api/PageableResponse";
 import { ClinicDto } from "models/api/company/ClinicDto";
-import { ClinicItems } from "components/common/ClinicItems";
+import { DictionaryItems } from "components/common/DictionaryItems";
 
 export class ClinicApi {
   static getAllClinics = async (pageNumber: number) =>
@@ -15,5 +15,5 @@ export class ClinicApi {
     );
 
   static getDictionaryClinic = async () =>
-    await authorizedApi.get<ClinicItems>("/info/getDictionaryClinic");
+    await authorizedApi.get<DictionaryItems>("/info/getDictionaryClinic");
 }

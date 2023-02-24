@@ -57,6 +57,7 @@ export const NavbarMainContainer = styled.div`
 `;
 
 export const NavbarMainWrapper = styled.div`
+  font-size: 18px;
   position: relative;
   ${NavbarSubmenuContainer} {
     display: none;

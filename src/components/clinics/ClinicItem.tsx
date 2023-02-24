@@ -33,7 +33,7 @@ export const ClinicItem = ({ clinic }: ClinicItemProps) => {
         <RightSide>
           <span>
             {right.map((s) => (
-              <span>
+              <span key={s}>
                 {s}
                 <br />
               </span>
@@ -47,7 +47,7 @@ export const ClinicItem = ({ clinic }: ClinicItemProps) => {
     return table.join(" ").trim();
   }
   return (
-    <ItemContainer key={clinic.uuid}>
+    <ItemContainer>
       <ImportantInfo>{clinic.clinicName}</ImportantInfo>
       <>{createLine("Wojewdództwo", clinic.province)}</>
       <>{createLine("Powiat", clinic.district)}</>

@@ -1,4 +1,4 @@
-export const isAccountValidation = (value: any, field: string) => {
+export const isAccountValid = (value: any, field: string) => {
   switch (field) {
     case "password":
       return (
@@ -22,7 +22,7 @@ export const isAccountValidation = (value: any, field: string) => {
     case "birthDay":
       return !value === false && !isNaN(Date.parse(value));
     case "nip":
-      return (value !== null && value.length === 0) || value.length === 10;
+      return value !== null && (value.length === 0 || value.length === 10);
     default:
       return false;
   }

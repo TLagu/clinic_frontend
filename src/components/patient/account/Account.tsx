@@ -1,7 +1,7 @@
 import { ClinicApi } from "api/ClinicApi";
 import { UserApi } from "api/UserApi";
 import { UserDetailsApi } from "api/UserDetailsApi";
-import { ClinicItems } from "components/common/ClinicItems";
+import { DictionaryItems } from "components/common/DictionaryItems";
 import UserContext from "context/UserContext";
 import { UserDto } from "models/api/company/UserDto";
 import { useCallback, useContext, useEffect, useState } from "react";
@@ -20,7 +20,7 @@ import { FormLineSelect } from "components/form/FormLineSelect";
 export const Account = () => {
   const { currentUser } = useContext(UserContext);
   const [user, setUser] = useState<UserDto | null>(null);
-  const [clinicItems, setClinicItems] = useState<ClinicItems | null>(null);
+  const [clinicItems, setClinicItems] = useState<DictionaryItems | null>(null);
 
   const [password, setPassword] = useState<string>("");
   const [email, setEmail] = useState<string>("");
@@ -188,7 +188,7 @@ export const Account = () => {
           label="Klinika:"
           onChange={(value) => setClinic(value)}
           placeholder="Klinika..."
-          clinics={clinicItems as any}
+          dictionary={clinicItems as any}
           value={clinic}
           validationResult={isClinicValid}
           validationMessage={`Wprowadź poprawnie.`}

@@ -30,7 +30,6 @@ export const Navbar = () => {
         case RoleType.ROLE_ADMIN:
           return <NavbarLink to={"/admin"}>Panel administratora</NavbarLink>;
         case RoleType.ROLE_DOCTOR:
-          //          return <NavbarLink to={"/doctor"}>Panel lekarza</NavbarLink>;
           return (
             <NavbarMainContainer>
               <NavbarMainWrapper>

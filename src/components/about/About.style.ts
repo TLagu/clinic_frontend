@@ -40,13 +40,13 @@ export const NestedTextContainer = styled.div`
   max-width: 1000px;
 `;
 
-export const BlueTextHighlighter = styled.text`
+export const BlueTextHighlighter = styled.span`
   font-weight: 600;
   font-style: italic;
   color: ${FONT_COLOR};
 `;
 
-export const BlackTextHighlighter = styled.text`
+export const BlackTextHighlighter = styled.span`
   font-weight: 700;
   font-style: italic;
 `;

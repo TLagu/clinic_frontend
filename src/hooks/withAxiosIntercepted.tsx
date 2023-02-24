@@ -4,9 +4,6 @@ import { ACCESS_TOKEN } from "constants/constants";
 import { useNavigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 
-// pokazać najpierw na dwóch komponentach z route i console logu w useEffect - kompozycja pozwalająca przekształcić komponent
-// w inny komponent, reużywać logiki
-
 export const authorizedApi = axios.create();
 
 export function withAxiosIntercepted<T extends JSX.IntrinsicAttributes>(
@@ -42,12 +39,12 @@ export function withAxiosIntercepted<T extends JSX.IntrinsicAttributes>(
 
       authorizedApi.interceptors.request.use((config: AxiosRequestConfig) => {
         const controller = new AbortController();
-        if (isTokenExpired()) {
-          controller.abort();
-          localStorage.removeItem(ACCESS_TOKEN);
-          navigate("/login");
-        }
         if (config?.headers) {
+          if (localStorage.getItem(ACCESS_TOKEN) && isTokenExpired()) {
+            controller.abort();
+            localStorage.removeItem(ACCESS_TOKEN);
+            navigate("/login");
+          }
           config.headers["Authorization"] = `Bearer ${localStorage.getItem(
             ACCESS_TOKEN
           )}`;
@@ -94,4 +91,3 @@ export function withAxiosIntercepted<T extends JSX.IntrinsicAttributes>(
     return isInitialized ? <Component {...props} /> : <></>;
   };
 }
-// export const unauthorizedApi = axios.create();

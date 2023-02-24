@@ -85,6 +85,6 @@ export const InfoUsed = styled.span`
   border-radius: 8px;
 `;
 
-export const LineHighlighter = styled.text`
+export const LineHighlighter = styled.span`
   color: ${FONT_COLOR};
 `;
