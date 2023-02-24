@@ -48,7 +48,7 @@ export const FormInput = styled.input`
 `;
 
 export const FormSelect = styled.select`
-  width: 500px;
+  width: 525px;
   padding: 6px 12px;
   font-size: 18px;
   border-radius: 4px;

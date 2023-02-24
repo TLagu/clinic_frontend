@@ -46,7 +46,7 @@ export const Home = () => {
           <BookmarkLink to={"/clinics"}> "Nasze Kliniki" </BookmarkLink>
         </BlueTextHighlighter>
         znajdziecie Państwo aktualną listę wszystkich klinik wraz ze
-        szczegółowymi danymi na ich temat.
+        szczegółowymi danymi na ich temat. (Dostęp wymaga zalogowania).
       </NestedTextContainer>
       <NestedTextContainer>
         W zakładce
@@ -62,7 +62,7 @@ export const Home = () => {
           <BookmarkLink to={"/contact"}> "Kontakt" </BookmarkLink>
         </BlueTextHighlighter>
         znajdziecie Państwo dane kontaktowe do naszej Centrali w Warszawie. Dane
-        kontaktowe oddziałów znajdują się w "Naszych Klinikach"
+        kontaktowe oddziałów znajdują się w "Naszych Klinikach". (Dostęp wymaga zalogowania). 
       </NestedTextContainer>
       <TextHeader>Więcej informacji?</TextHeader>
       <TextContainer>

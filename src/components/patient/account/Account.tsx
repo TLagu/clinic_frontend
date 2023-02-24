@@ -15,8 +15,8 @@ import {
   SaveButton,
   PatientContainer,
 } from "components/patient/account/AccountForm.style";
-import { FormLineInput } from "./FormLineInput";
-import { FormLineSelect } from "./FormLineSelect";
+import { FormLineInput } from "components/form/FormLineInput";
+import { FormLineSelect } from "components/form/FormLineSelect";
 
 export const Account = () => {
   const { currentUser } = useContext(UserContext);
