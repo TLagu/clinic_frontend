@@ -42,7 +42,7 @@ export const ProfileDrawer = (props: ProfileDrawerProps) => {
             <Email>{currentUser.email}</Email>
             <PrimaryButton
               onClick={() => {
-                navigate("/account");
+                navigate(currentUser.username);
                 props.toggleProfileDrawer();
               }}
             >
