@@ -13,8 +13,11 @@ import {
 import { UserDto } from "models/api/company/UserDto";
 import { useCallback, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { DoctorContainer, DoctorWrapper } from "../Doctor.style";
-import { Appointment } from "./appointment/Appointment";
+import {
+  MainPanelContainer,
+  MainPanelWrapper,
+} from "components/common/MainPanel.style";
+import { Appointment } from "./appointment/DoctorAppointment";
 import {
   Center,
   DataContainer,
@@ -26,9 +29,9 @@ import {
   ScheduleContainer,
   ScheduleWrapper,
   StyledHeading,
-} from "./Schedule.style";
+} from "./DoctorSchedule.style";
 
-export const Schedule = () => {
+export const DoctorSchedule = () => {
   const { currentUser } = useContext(UserContext);
   const [user, setUser] = useState<UserDto | null>(null);
   const [schedule, setSchedule] = useState<ScheduleItems>();
@@ -162,10 +165,12 @@ export const Schedule = () => {
           </InfoFree>
         ) : (
           <InfoUsed>
-            {formatTime(schedule.startTime as Date) +
-              " - " +
-              formatTime(schedule.endTime as Date) +
-              " (Wizyta)"}
+            <StyledHeading>
+              {formatTime(schedule.startTime as Date) +
+                " - " +
+                formatTime(schedule.endTime as Date) +
+                " (Wizyta)"}
+            </StyledHeading>
             <Appointment
               key={schedule.uuid}
               patients={patientItems as any}
@@ -180,8 +185,8 @@ export const Schedule = () => {
   }
 
   return (
-    <DoctorContainer>
-      <DoctorWrapper>
+    <MainPanelContainer>
+      <MainPanelWrapper>
         <ScheduleContainer>
           <StyledHeading>
             {schedule?.date && formatDate(schedule.date)}
@@ -200,7 +205,7 @@ export const Schedule = () => {
             </RightSide>
           </ScheduleWrapper>
         </ScheduleContainer>
-      </DoctorWrapper>
-    </DoctorContainer>
+      </MainPanelWrapper>
+    </MainPanelContainer>
   );
 };

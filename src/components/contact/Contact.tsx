@@ -17,8 +17,6 @@ export const Contact = () => {
     try {
       const result = await CompanyApi.getCompanyData();
       setCompany(result.data);
-      console.log("company");
-      console.log(company);
     } finally {
       setIsLoading(false);
     }

@@ -5,15 +5,14 @@ import {
   FormContainer,
   InputContainer,
   SaveButton,
-  StyledHeading,
-} from "components/form/Form.style";
-import { FormLineInput } from "components/form/FormLineInput";
-import { FormLineLabels } from "components/form/FormLineLabels";
+} from "components/common/form/Form.style";
+import { FormLineInput } from "components/common/form/FormLineInput";
+import { FormLineLabels } from "components/common/form/FormLineLabels";
 import { AppointmentDto } from "models/api/company/ScheduleDto";
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { isAppointmentValid } from "./AppointmentValidation";
+import { isAppointmentValid } from "./DoctorAppointmentValidation";
 
 interface AppointmentProps {
   visible: boolean;
@@ -41,7 +40,6 @@ export const Appointment = (props: AppointmentProps) => {
       const appointment = await ScheduleApi.getAppointmentByUuid(
         props.appointmentUuid as string
       );
-      console.log(appointment);
       setPatient(appointment.data.patient as string);
       setClinic(appointment.data.clinic as string);
       setDescription(appointment.data.description as string);
@@ -73,7 +71,6 @@ export const Appointment = (props: AppointmentProps) => {
         description: description,
         recommendations: recommendations,
       };
-      console.log(appointmentRequest);
       await ScheduleApi.updateSchedule(appointmentRequest);
       toast.success("Poprawnie zapisano zmiany.", {
         position: toast.POSITION.TOP_RIGHT,
@@ -98,7 +95,6 @@ export const Appointment = (props: AppointmentProps) => {
 
   return (
     <FormContainer key={props.appointmentUuid}>
-      <StyledHeading>Dane użytkownika:</StyledHeading>
       <InputContainer>
         <FormLineLabels
           label="Pacjent:"

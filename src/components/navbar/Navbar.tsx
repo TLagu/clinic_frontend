@@ -35,8 +35,8 @@ export const Navbar = () => {
               <NavbarMainWrapper>
                 Panel lekarza
                 <NavbarSubmenuContainer>
-                  <NavbarLink to={"/doctor_schedule"}>Harmonogram</NavbarLink>
-                  <NavbarLink to={"/doctor_account"}>Konto</NavbarLink>
+                  <NavbarLink to={"/doctor_schedule"}>Wizyty</NavbarLink>
+                  <NavbarLink to={"/account"}>Konto</NavbarLink>
                 </NavbarSubmenuContainer>
               </NavbarMainWrapper>
             </NavbarMainContainer>
@@ -44,7 +44,17 @@ export const Navbar = () => {
         case RoleType.ROLE_SECRETARY:
           return <NavbarLink to={"/secretary"}>Panel sekretariatu</NavbarLink>;
         case RoleType.ROLE_PATIENT:
-          return <NavbarLink to={"/patient"}>Panel pacjenta</NavbarLink>;
+          return (
+            <NavbarMainContainer>
+              <NavbarMainWrapper>
+                Panel pacjenta
+                <NavbarSubmenuContainer>
+                  <NavbarLink to={"/patient_schedule"}>Wizyty</NavbarLink>
+                  <NavbarLink to={"/account"}>Konto</NavbarLink>
+                </NavbarSubmenuContainer>
+              </NavbarMainWrapper>
+            </NavbarMainContainer>
+          );
       }
     return null;
   }

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { FONT_COLOR } from "constants/constants";
 
-export const DoctorContainer = styled.div`
+export const MainPanelContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,7 +9,7 @@ export const DoctorContainer = styled.div`
   color: ${FONT_COLOR};
 `;
 
-export const DoctorWrapper = styled.div`
+export const MainPanelWrapper = styled.div`
   display: flex;
   width: 1000px;
   min-height: 50vh;

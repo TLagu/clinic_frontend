@@ -30,7 +30,6 @@ export function withAxiosIntercepted<T extends JSX.IntrinsicAttributes>(
 
     useEffect(() => {
       axios.interceptors.request.use((config: AxiosRequestConfig) => {
-        console.log("request - without authorization");
         return {
           ...config,
           baseURL: process.env.REACT_APP_API_URL,

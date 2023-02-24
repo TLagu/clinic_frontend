@@ -1,6 +1,6 @@
 import { UserApi } from "api/UserApi";
 import { PrimaryButton } from "components/global.styles";
-import { PaginationItem } from "components/store/PaginationItem";
+import { PaginationItem } from "components/common/store/PaginationItem";
 import { UserDto } from "models/api/company/UserDto";
 import { PageableResponse } from "models/api/PageableResponse";
 import { useCallback, useEffect, useState } from "react";
@@ -27,7 +27,6 @@ export const Admin = () => {
     try {
       setIsLoading(true);
       const result = await UserApi.getAllUsers(pageNumber);
-      console.log(result.data);
       setUsers(result.data);
     } finally {
       setIsLoading(false);
