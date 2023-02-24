@@ -2,7 +2,7 @@ import { useState, useCallback, useEffect } from "react";
 import { ClinicApi } from "api/ClinicApi";
 import { PageableResponse } from "models/api/PageableResponse";
 import { ClinicDto } from "models/api/company/ClinicDto";
-import { PaginationItem } from "components/store/PaginationItem";
+import { PaginationItem } from "components/common/store/PaginationItem";
 import {
   ItemsContainer,
   Loader,
@@ -23,7 +23,6 @@ export const Clinics = () => {
     try {
       setIsLoading(true);
       const result = await ClinicApi.getAllClinics(pageNumber);
-      console.log(result.data);
       setClinics(result.data);
     } finally {
       setIsLoading(false);

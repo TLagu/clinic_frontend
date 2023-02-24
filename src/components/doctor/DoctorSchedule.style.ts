@@ -47,7 +47,7 @@ export const RightSide = styled.div`
 `;
 
 export const StyledHeading = styled.div`
-  font-size: 16px;
+  font-size: 20px;
   font-weight: 600;
   margin: 12px auto;
   color: ${FONT_COLOR};
@@ -82,6 +82,10 @@ export const InfoUsed = styled.span`
   padding: 8px;
   border: 1px solid red;
   border-radius: 8px;
+`;
+
+export const Bold = styled.span`
+  font-weight: 600;
 `;
 
 export const LineHighlighter = styled.span`

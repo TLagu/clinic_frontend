@@ -6,18 +6,17 @@ import {
   InputContainer,
   StyledHeading,
   SaveButton,
-} from "components/form/Form.style";
+} from "components/common/form/Form.style";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { UserDto } from "models/api/company/UserDto";
 import { ClinicApi } from "api/ClinicApi";
 import { UserApi } from "api/UserApi";
-import { FormLineInput } from "components/form/FormLineInput";
-import { FormLineSelect } from "components/form/FormLineSelect";
+import { FormLineInput } from "components/common/form/FormLineInput";
+import { FormLineSelect } from "components/common/form/FormLineSelect";
 import { isAccountValid } from "./AccountValidation";
-import { DoctorContainer, DoctorWrapper } from "../Doctor.style";
+import { MainPanelContainer, MainPanelWrapper } from "../MainPanel.style";
 import { DictionaryItems } from "components/common/DictionaryItems";
-import { ClinicDto } from "models/api/company/ClinicDto";
 
 export const Account = () => {
   const { currentUser } = useContext(UserContext);
@@ -107,7 +106,7 @@ export const Account = () => {
         position: toast.POSITION.TOP_RIGHT,
       });
 
-      navigate("/doctor_account");
+      navigate("/account");
     }
   }, [
     user?.uuid,
@@ -128,46 +127,37 @@ export const Account = () => {
   useEffect(() => {
     setIsPasswordValid(isAccountValid(password, "password"));
   }, [password]);
-
   useEffect(() => {
     setIsEmailValid(isAccountValid(email, "email"));
   }, [email]);
-
   useEffect(() => {
     setIsClinicValid(isAccountValid(clinic, "clinic"));
   }, [clinic]);
-
   useEffect(() => {
     setIsFirstNameValid(isAccountValid(firstName, "firstName"));
   }, [firstName]);
-
   useEffect(() => {
     setIsSecondNameValid(isAccountValid(secondName, "secondName"));
   }, [secondName]);
-
   useEffect(() => {
     setIsLastNameValid(isAccountValid(lastName, "lastName"));
   }, [lastName]);
-
   useEffect(() => {
     setIsPeselValid(isAccountValid(pesel, "pesel"));
   }, [pesel]);
-
   useEffect(() => {
     setIsIdNumberValid(isAccountValid(idNumber, "idNumber"));
   }, [idNumber]);
-
   useEffect(() => {
     setIsBirthDayValid(isAccountValid(birthDay, "birthDay"));
   }, [birthDay]);
-
   useEffect(() => {
     setIsNipValid(isAccountValid(nip, "nip"));
   }, [nip]);
 
   return (
-    <DoctorContainer>
-      <DoctorWrapper>
+    <MainPanelContainer>
+      <MainPanelWrapper>
         <FormContainer>
           <StyledHeading>Dane użytkownika:</StyledHeading>
           <InputContainer>
@@ -178,7 +168,7 @@ export const Account = () => {
               value={password}
               onChange={(value) => setPassword(value)}
               validationResult={isPasswordValid}
-              validationMessage={`Wprowadź poprawnie hasło.\nHasło musi mieć minimum 5 znaków i maksimum 50.`}
+              validationMessage={`Hasło musi mieć minimum 5 znaków i maksimum 50.`}
             />
           </InputContainer>
           <InputContainer>
@@ -189,7 +179,7 @@ export const Account = () => {
               value={email}
               onChange={(value) => setEmail(value)}
               validationResult={isEmailValid}
-              validationMessage={`Wprowadź poprawnie adres e-mail.\nE-mail musi mieć minimum 5 znaków i maksimum 50.`}
+              validationMessage={`E-mail musi mieć minimum 5 znaków i maksimum 50.`}
             />
           </InputContainer>
           <InputContainer>
@@ -200,7 +190,7 @@ export const Account = () => {
               dictionary={clinicItems as any}
               value={clinic}
               validationResult={isClinicValid}
-              validationMessage={`Wprowadź poprawnie adres e-mail.\nE-mail musi mieć minimum 5 znaków i maksimum 50.`}
+              validationMessage={`Wybierz swoją klinikę.`}
             />
           </InputContainer>
           <InputContainer>
@@ -211,7 +201,7 @@ export const Account = () => {
               value={firstName}
               onChange={(value) => setFirstName(value)}
               validationResult={isFirstNameValid}
-              validationMessage={`Wprowadź poprawnie pierwsze imię.\nPierwsze imię musi mieć minimum 5 znaków i maksimum 50.`}
+              validationMessage={`Pierwsze imię musi mieć minimum 5 znaków i maksimum 50.`}
             />
           </InputContainer>
           <InputContainer>
@@ -222,7 +212,7 @@ export const Account = () => {
               value={secondName}
               onChange={(value) => setSecondName(value)}
               validationResult={isSecondNameValid}
-              validationMessage={`Wprowadź poprawnie drugie imię.\nDrugie imię może być puste lub musi mieć minimum 5 znaków i maksimum 50.`}
+              validationMessage={`Drugie imię może być puste lub musi mieć minimum 5 znaków i maksimum 50.`}
             />
           </InputContainer>
           <InputContainer>
@@ -233,7 +223,7 @@ export const Account = () => {
               value={lastName}
               onChange={(value) => setLastName(value)}
               validationResult={isLastNameValid}
-              validationMessage={`Wprowadź poprawnie nazwisko.\nNazwisko musi mieć minimum 5 znaków i maksimum 50.`}
+              validationMessage={`Nazwisko musi mieć minimum 5 znaków i maksimum 50.`}
             />
           </InputContainer>
           <InputContainer>
@@ -244,7 +234,7 @@ export const Account = () => {
               value={pesel}
               onChange={(value) => setPesel(value)}
               validationResult={isPeselValid}
-              validationMessage={`Wprowadź poprawnie numer PESEL.\nPESEL musi mieć dokładnie 11 znaków.`}
+              validationMessage={`PESEL musi mieć dokładnie 11 znaków.`}
             />
           </InputContainer>
           <InputContainer>
@@ -255,7 +245,7 @@ export const Account = () => {
               value={idNumber}
               onChange={(value) => setIdNumber(value)}
               validationResult={isIdNumberValid}
-              validationMessage={`Wprowadź poprawnie serię i numer dowodu osobistego.\nSeria i numer dowodu nie może być pusta i nie może przekroczyć 20 znaków.`}
+              validationMessage={`Seria i numer dowodu nie może być pusta i nie może przekroczyć 20 znaków.`}
             />
           </InputContainer>
           <InputContainer>
@@ -266,7 +256,7 @@ export const Account = () => {
               value={birthDay}
               onChange={(value) => setBirthDay(value)}
               validationResult={isBirthDayValid}
-              validationMessage={`Wprowadź poprawnie datę urodzenia.\nFormat daty urodzenia to YYYY-MM-DD.`}
+              validationMessage={`Format daty urodzenia to YYYY-MM-DD.`}
             />
           </InputContainer>
           <InputContainer>
@@ -277,7 +267,7 @@ export const Account = () => {
               value={nip}
               onChange={(value) => setNip(value)}
               validationResult={isNipValid}
-              validationMessage={`Wprowadź poprawnie numer NIP.\nNIP może pozostać pusty lub zawierać dokładnie 10 znaków (wprowadzać bez myślników i spacji).`}
+              validationMessage={`NIP może pozostać pusty lub zawierać dokładnie 10 znaków (wprowadzać bez myślników i spacji).`}
             />
           </InputContainer>
           <InputContainer>
@@ -300,7 +290,7 @@ export const Account = () => {
             </SaveButton>
           </InputContainer>
         </FormContainer>
-      </DoctorWrapper>
-    </DoctorContainer>
+      </MainPanelWrapper>
+    </MainPanelContainer>
   );
 };

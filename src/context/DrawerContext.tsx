@@ -1,6 +1,6 @@
 import React, { createContext, useState } from "react";
 import { DrawerContextType } from "models/DrawerContextType";
-import { ProfileDrawer } from "components/drawer/ProfileDrawer";
+import { ProfileDrawer } from "components/common/drawer/ProfileDrawer";
 
 const defaultSettings: DrawerContextType = {
   isProfileDrawerOpen: false,

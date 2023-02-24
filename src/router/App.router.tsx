@@ -7,13 +7,13 @@ import { ProtectedRoute } from "components/ProtectedRoute";
 import { UnauthorizedRoute } from "components/UnauthorizedRoute";
 import { Admin } from "components/admin/Admin";
 import { Secretary } from "components/secretary/Secretary";
-import { Patient } from "components/patient/Patient";
 import { Clinics } from "components/clinics/Clinics";
 import { News } from "components/news/News";
 import { Contact } from "components/contact/Contact";
 import { Register } from "components/register/Register";
-import { Schedule } from "components/doctor/schedule/Schedule";
-import { Account } from "components/doctor/account/Account";
+import { DoctorSchedule } from "components/doctor/DoctorSchedule";
+import { Account } from "components/common/account/Account";
+import { PatientSchedule } from "components/patient/PatientSchedule";
 
 export const AppRouter = () => {
   return (
@@ -53,12 +53,20 @@ export const AppRouter = () => {
           path="/doctor_schedule"
           element={
             <ProtectedRoute>
-              <Schedule />
+              <DoctorSchedule />
             </ProtectedRoute>
           }
         ></Route>
         <Route
-          path="/doctor_account"
+          path="/patient_schedule"
+          element={
+            <ProtectedRoute>
+              <PatientSchedule />
+            </ProtectedRoute>
+          }
+        ></Route>
+        <Route
+          path="/account"
           element={
             <ProtectedRoute>
               <Account />
@@ -70,14 +78,6 @@ export const AppRouter = () => {
           element={
             <ProtectedRoute>
               <Secretary />
-            </ProtectedRoute>
-          }
-        ></Route>
-        <Route
-          path="/patient"
-          element={
-            <ProtectedRoute>
-              <Patient />
             </ProtectedRoute>
           }
         ></Route>
