@@ -23,7 +23,7 @@ import {
   StyledHeading,
 } from "components/common/schedule/Schedule.style";
 import { formatDate } from "components/common/Functions";
-import { CreateLineFromArray } from "components/common/schedule/CreateLineFromArray";
+import { DoctorLineFromArray } from "components/doctor/DoctorLineFromArray";
 import { Loader } from "components/global.styles";
 
 export const DoctorSchedule = () => {
@@ -139,7 +139,7 @@ export const DoctorSchedule = () => {
             <Center>
               <ItemContainer>
                 {schedule?.items.map((s) => (
-                  <CreateLineFromArray
+                  <DoctorLineFromArray
                     schedule={s}
                     patientItems={patientItems as DictionaryItems}
                     clinicItems={clinicItems as DictionaryItems}

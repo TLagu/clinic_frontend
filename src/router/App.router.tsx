@@ -12,7 +12,7 @@ import { News } from "components/news/News";
 import { Contact } from "components/contact/Contact";
 import { Register } from "components/register/Register";
 import { DoctorSchedule } from "components/doctor/DoctorSchedule";
-import { Account } from "components/common/account/Account";
+import { Account } from "components/account/Account";
 import { PatientSchedule } from "components/patient/PatientSchedule";
 
 export const AppRouter = () => {

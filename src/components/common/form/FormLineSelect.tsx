@@ -7,8 +7,8 @@ interface FormLineSelectProps {
   placeholder: string;
   dictionary: DictionaryItems;
   value: string;
-  validationResult: boolean;
-  validationMessage: string;
+  validationResult?: boolean;
+  validationMessage?: string;
 }
 
 export const FormLineSelect = (props: FormLineSelectProps) => {

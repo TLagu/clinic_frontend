@@ -2,26 +2,39 @@ import { ScheduleApi } from "api/ScheduleApi";
 import { UserDetailsApi } from "api/UserDetailsApi";
 
 import { DictionaryItems } from "components/common/DictionaryItems";
-import { StyledHeading } from "components/common/form/Form.style";
+import {
+  FormContainer,
+  StyledHeading,
+} from "components/common/form/Form.style";
+import { FormLineSelect } from "components/common/form/FormLineSelect";
 import { formatDate } from "components/common/Functions";
 import {
   MainPanelContainer,
   MainPanelWrapper,
 } from "components/common/MainPanel.style";
+import { PatientLineFromArray } from "components/patient/PatientLineFromArray";
 import {
   Center,
   ItemContainer,
+  LeftSide,
   RightSide,
   ScheduleContainer,
   ScheduleWrapper,
 } from "components/common/schedule/Schedule.style";
-import { LeftSide, Loader } from "components/global.styles";
+import { Loader } from "components/global.styles";
 import UserContext from "context/UserContext";
 import ArrowLeftIcon from "icons/ArrowLeft";
 import ArrowRightIcon from "icons/ArrowRight";
 import { ScheduleItems } from "models/api/company/ScheduleDto";
-import { useCallback, useContext, useEffect, useState } from "react";
+import {
+  SetStateAction,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { useNavigate } from "react-router-dom";
+import { InputContainer } from "components/register/Register.style";
 
 export const PatientSchedule = () => {
   const { currentUser } = useContext(UserContext);
@@ -53,19 +66,19 @@ export const PatientSchedule = () => {
   }, [fetchDoctor, navigate]);
 
   const fetchSchedule = useCallback(async () => {
-    if (currentUser?.username) {
-      try {
-        setIsLoading(true);
+    try {
+      setIsLoading(true);
+      if (doctor) {
         const scheduleResult = await ScheduleApi.getscheduleByDay(
           formattedDate,
           doctor
         );
         setSchedule(scheduleResult.data);
-      } finally {
-        setIsLoading(false);
       }
+    } finally {
+      setIsLoading(false);
     }
-  }, [doctor]);
+  }, [doctor, formattedDate]);
 
   useEffect(() => {
     fetchSchedule();
@@ -94,19 +107,26 @@ export const PatientSchedule = () => {
           <StyledHeading>
             {schedule?.date && formatDate(schedule.date)}
           </StyledHeading>
+          <FormContainer>
+            <InputContainer>
+              <FormLineSelect
+                label="Lekarz: "
+                onChange={(value: SetStateAction<string>) => setDoctor(value)}
+                placeholder="Lekarz..."
+                dictionary={doctors as DictionaryItems}
+                value={doctor}
+              />
+            </InputContainer>
+          </FormContainer>
           <ScheduleWrapper>
             <LeftSide onClick={onBeforeClicked}>
               <ArrowLeftIcon style={{ height: "36px", width: "36px" }} />
             </LeftSide>
             <Center>
               <ItemContainer>
-                {/* {schedule?.items.map((s) => (
-                  <CreateLineFromArray
-                    schedule={s}
-                    patientItems={patientItems as DictionaryItems}
-                    clinicItems={clinicItems as DictionaryItems}
-                  />
-                ))} */}
+                {schedule?.items.map((s) => (
+                  <PatientLineFromArray schedule={s} doctor={doctor} />
+                ))}
               </ItemContainer>
             </Center>
             <RightSide onClick={onAfterClicked}>

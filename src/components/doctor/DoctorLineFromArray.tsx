@@ -5,9 +5,9 @@ import {
   InfoUsed,
   StyledHeading,
 } from "components/common/schedule/Schedule.style";
-import { formatTime } from "../Functions";
-import { Appointment } from "components/doctor/appointment/DoctorAppointment";
-import { DictionaryItems } from "../DictionaryItems";
+import { formatTime } from "../common/Functions";
+import { DoctorAppointment } from "components/doctor/appointment/DoctorAppointment";
+import { DictionaryItems } from "../common/DictionaryItems";
 
 interface CreateLineFromArrayProps {
   schedule: BasicScheduleDto;
@@ -15,7 +15,7 @@ interface CreateLineFromArrayProps {
   clinicItems?: DictionaryItems;
 }
 
-export const CreateLineFromArray = (props: CreateLineFromArrayProps) => {
+export const DoctorLineFromArray = (props: CreateLineFromArrayProps) => {
   return (
     <DataContainer key={props.schedule.uuid}>
       {!props.schedule.appointment ? (
@@ -33,7 +33,7 @@ export const CreateLineFromArray = (props: CreateLineFromArrayProps) => {
               formatTime(props.schedule.endTime as Date) +
               " (Wizyta)"}
           </StyledHeading>
-          <Appointment
+          <DoctorAppointment
             key={props.schedule.uuid}
             patients={props.patientItems as any}
             clinics={props.clinicItems as any}

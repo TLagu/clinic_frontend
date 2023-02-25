@@ -14,14 +14,14 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { isAppointmentValid } from "./DoctorAppointmentValidation";
 
-interface AppointmentProps {
+interface DoctorAppointmentProps {
   visible: boolean;
   patients: DictionaryItems;
   clinics: DictionaryItems;
   appointmentUuid: string;
 }
 
-export const Appointment = (props: AppointmentProps) => {
+export const DoctorAppointment = (props: DoctorAppointmentProps) => {
   const [patient, setPatient] = useState<string>("");
   const [clinic, setClinic] = useState<string>("");
   const [description, setDescription] = useState<string>("");
@@ -87,7 +87,7 @@ export const Appointment = (props: AppointmentProps) => {
       });
       navigate("/doctor_schedule");
     }
-  }, [description, recommendations, navigate]);
+  }, [props.appointmentUuid, description, recommendations, navigate]);
 
   if (isLoading) {
     return <Loader />;

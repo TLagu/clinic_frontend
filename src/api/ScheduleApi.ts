@@ -17,4 +17,7 @@ export class ScheduleApi {
 
   static updateSchedule = async (request: AppointmentDto) =>
     await authorizedApi.put("/schedule/doctorSchedule", request);
+
+  static addPatientSchedule = async (request: AppointmentDto) =>
+    await authorizedApi.post("/schedule/addPatientSchedule", request);
 }
