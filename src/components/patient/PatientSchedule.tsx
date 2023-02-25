@@ -44,6 +44,7 @@ export const PatientSchedule = () => {
   const [doctor, setDoctor] = useState<string>("");
   const [formattedDate, setFormattedDate] = useState<string>("");
   const [schedule, setSchedule] = useState<ScheduleItems>();
+  const [refresh, setRefresh] = useState<Date | null>(null);
 
   const navigate = useNavigate();
   const currentDay = new Date(Math.floor(Date.now()));
@@ -78,11 +79,11 @@ export const PatientSchedule = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [doctor, formattedDate]);
+  }, [doctor, formattedDate, refresh]);
 
   useEffect(() => {
     fetchSchedule();
-  }, [fetchDoctor, fetchSchedule]);
+  }, [fetchDoctor, fetchSchedule, refresh]);
 
   if (isLoading) {
     return <Loader />;
@@ -98,6 +99,10 @@ export const PatientSchedule = () => {
     let date = new Date(formattedDate);
     date.setDate(date.getDate() + 1);
     setFormattedDate(formatDate(date));
+  };
+
+  const updateRefresh = (lastRefresh: Date) => {
+    setRefresh(lastRefresh);
   };
 
   return (
@@ -125,7 +130,11 @@ export const PatientSchedule = () => {
             <Center>
               <ItemContainer>
                 {schedule?.items.map((s) => (
-                  <PatientLineFromArray schedule={s} doctor={doctor} />
+                  <PatientLineFromArray
+                    schedule={s}
+                    doctor={doctor}
+                    updateRefresh={updateRefresh}
+                  />
                 ))}
               </ItemContainer>
             </Center>
