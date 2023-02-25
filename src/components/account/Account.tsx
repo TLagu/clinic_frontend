@@ -37,9 +37,15 @@ export const Account = () => {
   const [birthDay, setBirthDay] = useState<string>("");
   const [nip, setNip] = useState<string>("");
 
+  const navigate = useNavigate();
+
   const fetchData = useCallback(async () => {
     if (currentUser?.username) {
+      console.log("currentUser");
+      console.log(currentUser);
       const userDetails = await UserDetailsApi.getUser(currentUser?.username);
+      console.log("userDetails");
+      console.log(userDetails);
       setUser(userDetails.data);
       const allClinics = await ClinicApi.getDictionaryClinic();
       setClinicItems(allClinics.data);
@@ -54,11 +60,11 @@ export const Account = () => {
       setBirthDay(userDetails.data.userAppDetails.birthDay?.toLocaleString());
       setNip(userDetails.data.userAppDetails.nip);
     }
-  }, [currentUser?.username]);
+  }, [currentUser?.username, navigate]);
 
   useEffect(() => {
     fetchData();
-  }, [fetchData]);
+  }, [currentUser?.username, fetchData, navigate]);
 
   const [isPasswordValid, setIsPasswordValid] = useState<boolean>(true);
   const [isEmailValid, setIsEmailValid] = useState<boolean>(true);
@@ -71,7 +77,6 @@ export const Account = () => {
   const [isBirthDayValid, setIsBirthDayValid] = useState<boolean>(true);
   const [isNipValid, setIsNipValid] = useState<boolean>(true);
 
-  const navigate = useNavigate();
   const onSaveClicked = useCallback(async () => {
     try {
       const userRequest: UserDto = {

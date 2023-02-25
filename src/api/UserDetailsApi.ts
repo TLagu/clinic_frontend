@@ -4,7 +4,7 @@ import { UserDto } from "models/api/company/UserDto";
 
 export class UserDetailsApi {
   static getUser = async (username: string) =>
-    await authorizedApi.get<UserDto>("/user/user", {
+    await authorizedApi.get<UserDto>("/user/getUserDetails", {
       params: {
         username: username,
       },
