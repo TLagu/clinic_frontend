@@ -12,14 +12,15 @@ import {
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { PageableResponse } from "models/api/PageableResponse";
 
 type UserItemProps = {
   user: UserDto;
+  updateRefresh: (lastRefresh: Date) => void;
 };
 
-export const UserItem = ({ user }: UserItemProps) => {
-  const navigate = useNavigate();
+export const UserItem = (props: UserItemProps) => {
+  const [refresh, setRefresh] = useState<Date | null>(null);
+  // const navigate = useNavigate();
 
   function createLine(left: string, right: string) {
     return (
@@ -38,10 +39,17 @@ export const UserItem = ({ user }: UserItemProps) => {
     return table.join(" ").trim();
   }
 
+  let lastRefresh: Date;
+  const handleRefresh = () => {
+    props.updateRefresh(lastRefresh);
+  };
+
   function deleteUser(uuid: any) {
     console.log(uuid);
     UserApi.deleteUser(uuid);
-    navigate("/admin");
+    lastRefresh = Date.now() as any;
+    handleRefresh();
+    // navigate("/admin");
     toast.success(`Użytkownik został pomyślnie usunięty z bazy.`, {
       position: toast.POSITION.BOTTOM_CENTER,
     });
@@ -54,24 +62,24 @@ export const UserItem = ({ user }: UserItemProps) => {
       <ImportantInfo>
         Użytkownik{" "}
         {concatString([
-          user.userAppDetails.firstName,
-          user.userAppDetails.lastName,
+          props.user.userAppDetails.firstName,
+          props.user.userAppDetails.lastName,
         ])}
       </ImportantInfo>
-      <>{createLine("Email", user.email)}</>
-      <>{createLine("Second name", user.userAppDetails.secondName)}</>
-      <>{createLine("NIP", user.userAppDetails.nip)}</>
-      <>{createLine("PESEL", user.userAppDetails.pesel)}</>
-      <>{createLine("Dowód osobisty", user.userAppDetails.idNumber)}</>
+      <>{createLine("Email", props.user.email)}</>
+      <>{createLine("Second name", props.user.userAppDetails.secondName)}</>
+      <>{createLine("NIP", props.user.userAppDetails.nip)}</>
+      <>{createLine("PESEL", props.user.userAppDetails.pesel)}</>
+      <>{createLine("Dowód osobisty", props.user.userAppDetails.idNumber)}</>
       {/* <>{createLine("Klinika", user.clinic)}</> */}
       {/* <>{createLineFromArray("Roles", user.roles.map((e) => e.))}</>  */}
       <AdminButtonPanel>
         <AdminButton>Zmodyfikuj dane użytkownika</AdminButton>
-        <AdminButton onClick={() => deleteUser(user.uuid)}>
+        <AdminButton onClick={() => deleteUser(props.user.uuid)}>
           Usuń użytkownika{" "}
           {concatString([
-            user.userAppDetails.firstName,
-            user.userAppDetails.lastName,
+            props.user.userAppDetails.firstName,
+            props.user.userAppDetails.lastName,
           ])}
         </AdminButton>
       </AdminButtonPanel>

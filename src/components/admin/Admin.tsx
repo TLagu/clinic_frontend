@@ -19,6 +19,10 @@ export const Admin = () => {
   const [users, setUsers] = useState<PageableResponse<UserDto> | null>(null);
   const [pageNumber, setPageNumber] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [refresh, setRefresh] = useState<Date | null>(null);
+  const updateRefresh = (lastRefresh: Date) => {
+    setRefresh(lastRefresh);
+  };
 
   const fetchProducts = useCallback(async () => {
     try {
@@ -28,7 +32,7 @@ export const Admin = () => {
     } finally {
       setIsLoading(false);
     }
-  }, [pageNumber]);
+  }, [pageNumber, refresh]);
 
   const onPageChanged = (number: number) => {
     setPageNumber(number - 1);
@@ -36,7 +40,7 @@ export const Admin = () => {
 
   useEffect(() => {
     fetchProducts();
-  }, [fetchProducts, pageNumber]);
+  }, [fetchProducts, pageNumber, refresh]);
 
   if (isLoading) {
     return <Loader />;
@@ -59,7 +63,7 @@ export const Admin = () => {
             <>
               <ItemsContainer>
                 {users?.content.map((x) => (
-                  <UserItem key={x.uuid} user={x} />
+                  <UserItem updateRefresh={updateRefresh} key={x.uuid} user={x} />
                 ))}
               </ItemsContainer>
               <PaginationContainer>
