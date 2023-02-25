@@ -12,7 +12,6 @@ export const AdminContainer = styled.div`
 export const UserManagementContainer = styled.div`
   display: flex;
   flex-direction: column;
-  height: 70vh;
 `;
 
 export const ButtonPanel = styled.div`
@@ -38,7 +37,6 @@ export const DisplayContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 60vh;
   // gap: 16px;
   margin-top: 40px;
   padding-bottom: 32px;

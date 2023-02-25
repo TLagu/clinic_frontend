@@ -41,11 +41,7 @@ export const Account = () => {
 
   const fetchData = useCallback(async () => {
     if (currentUser?.username) {
-      console.log("currentUser");
-      console.log(currentUser);
       const userDetails = await UserDetailsApi.getUser(currentUser?.username);
-      console.log("userDetails");
-      console.log(userDetails);
       setUser(userDetails.data);
       const allClinics = await ClinicApi.getDictionaryClinic();
       setClinicItems(allClinics.data);
@@ -53,12 +49,12 @@ export const Account = () => {
       setEmail(userDetails.data.email);
       setClinic(userDetails.data.clinic as string);
       setFirstName(userDetails.data.userAppDetails.firstName);
-      setSecondName(userDetails.data.userAppDetails.secondName);
+      setSecondName(userDetails.data.userAppDetails.secondName as string);
       setLastName(userDetails.data.userAppDetails.lastName);
       setPesel(userDetails.data.userAppDetails.pesel);
-      setIdNumber(userDetails.data.userAppDetails.idNumber);
+      setIdNumber(userDetails.data.userAppDetails.idNumber as string);
       setBirthDay(userDetails.data.userAppDetails.birthDay?.toLocaleString());
-      setNip(userDetails.data.userAppDetails.nip);
+      setNip(userDetails.data.userAppDetails.nip as string);
     }
   }, [currentUser?.username, navigate]);
 

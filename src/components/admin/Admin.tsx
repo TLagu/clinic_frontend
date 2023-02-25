@@ -20,13 +20,19 @@ export const Admin = () => {
   const [pageNumber, setPageNumber] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [refresh, setRefresh] = useState<Date | null>(null);
+
   const updateRefresh = (lastRefresh: Date) => {
     setRefresh(lastRefresh);
   };
 
+  function delay(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
   const fetchProducts = useCallback(async () => {
     try {
       setIsLoading(true);
+      await delay(200);
       const result = await UserApi.getAllUsers(pageNumber);
       setUsers(result.data);
     } finally {
@@ -63,7 +69,11 @@ export const Admin = () => {
             <>
               <ItemsContainer>
                 {users?.content.map((x) => (
-                  <UserItem updateRefresh={updateRefresh} key={x.uuid} user={x} />
+                  <UserItem
+                    updateRefresh={updateRefresh}
+                    key={x.uuid}
+                    user={x}
+                  />
                 ))}
               </ItemsContainer>
               <PaginationContainer>

@@ -12,8 +12,8 @@ export class UserApi {
       },
     });
 
-  static deleteUser = (uuid: any) => {
-    return authorizedApi.delete<UserDto>(`/user/delete${uuid}`);
+  static deleteUser = async (uuid: any) => {
+    await authorizedApi.delete(`/user/delete${uuid}`);
   };
 
   static getUser = async () =>
