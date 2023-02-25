@@ -15,14 +15,17 @@ import { toast } from "react-toastify";
 interface PatientAppointmentProps {
   scheduleUuid: string;
   doctor: string;
+  updateRefresh: (lastRefresh: Date) => void;
 }
 
 export const PatientAppointment = (props: PatientAppointmentProps) => {
   const { currentUser } = useContext(UserContext);
   const [patient, setPatient] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [refresh, setRefresh] = useState<Date | null>(null);
-
+  let lastRefresh: Date;
+  const handleRefresh = () => {
+    props.updateRefresh(lastRefresh);
+  };
   const navigate = useNavigate();
 
   const fetchDate = useCallback(async () => {
@@ -35,7 +38,7 @@ export const PatientAppointment = (props: PatientAppointmentProps) => {
     } finally {
       setIsLoading(false);
     }
-  }, [currentUser?.username, refresh]);
+  }, [currentUser?.username]);
 
   useEffect(() => {
     fetchDate();
@@ -52,7 +55,8 @@ export const PatientAppointment = (props: PatientAppointmentProps) => {
       toast.success("Poprawnie zapisano zmiany.", {
         position: toast.POSITION.TOP_RIGHT,
       });
-      setRefresh(new Date());
+      lastRefresh = Date.now() as any;
+      handleRefresh();
     } catch (error: any) {
       let errorMessage;
       if (error.response && error.response.status === 401) {
