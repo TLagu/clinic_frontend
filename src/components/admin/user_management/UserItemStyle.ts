@@ -47,3 +47,25 @@ export const ImportantInfo = styled.span`
 export const LineHighlighter = styled.span`
   color: ${FONT_COLOR};
 `;
+
+export const AdminButtonPanel = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 50px;
+  margin-top: 30px;
+`;
+
+export const AdminButton = styled.button`
+  padding: 10px 16px;
+  border: 0;
+  background-color: #24a0ed;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+
+  &:hover {
+    filter: brightness(85%);
+  }
+`;

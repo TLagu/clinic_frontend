@@ -31,13 +31,14 @@ export const ButtonPanelTitle = styled.span`
   font-weight: 600;
   margin-top: 30px;
   margin-bottom: 20px;
+  gap 20px;
 `;
 
 export const DisplayContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 50vh;
+  height: 60vh;
   // gap: 16px;
   margin-top: 40px;
   padding-bottom: 32px;

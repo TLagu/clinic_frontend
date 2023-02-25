@@ -19,7 +19,6 @@ export const Admin = () => {
   const [users, setUsers] = useState<PageableResponse<UserDto> | null>(null);
   const [pageNumber, setPageNumber] = useState<number>(0);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  // const [userList, setUserList] = useState<boolean>(false);
 
   const fetchProducts = useCallback(async () => {
     try {
