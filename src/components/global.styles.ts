@@ -46,7 +46,7 @@ export const Loader = styled.span`
   }
 `;
 
-export const StyledHeading = styled.span`
+export const StyledHeader = styled.span`
   font-size: 36px;
   font-weight: 600;
   margin-top: 64px;

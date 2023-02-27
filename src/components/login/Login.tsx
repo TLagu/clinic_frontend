@@ -12,7 +12,7 @@ import { ACCESS_TOKEN } from "constants/constants";
 // tsconfig.json
 import UserContext from "context/UserContext";
 import { Link, useNavigate } from "react-router-dom";
-import { LoginButton, StyledHeading } from "components/global.styles";
+import { LoginButton, StyledHeader } from "components/global.styles";
 
 export const Login = () => {
   const [username, setUsername] = useState<string>("");
@@ -69,7 +69,7 @@ export const Login = () => {
 
   return (
     <LoginContainer>
-      <StyledHeading>Zaloguj się do portalu</StyledHeading>
+      <StyledHeader>Zaloguj się do portalu</StyledHeader>
       <InputContainer>
         <LoginInput
           placeholder="Nazwa użytkownika"

@@ -1,5 +1,5 @@
 import { AuthApi } from "api/AuthApi";
-import { StyledHeading } from "components/global.styles";
+import { StyledHeader } from "components/global.styles";
 import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
@@ -76,7 +76,7 @@ export const Register = () => {
 
   return (
     <RegisterContainer>
-      <StyledHeading>Zarejestruj się w portalu</StyledHeading>
+      <StyledHeader>Zarejestruj się w portalu</StyledHeader>
       <InputContainer>
         <RegisterInput
           placeholder="Nazwa użytkownika"

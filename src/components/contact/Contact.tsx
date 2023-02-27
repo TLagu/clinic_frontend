@@ -1,6 +1,6 @@
 import { CompanyApi } from "api/CompanyApi";
 import { Company } from "components/company/Company";
-import { Loader, StyledHeading } from "components/global.styles";
+import { Loader, StyledHeader } from "components/global.styles";
 import { CompanyDto } from "models/api/company/CompanyDto";
 import { useCallback, useEffect, useState } from "react";
 import { CompanyContainer, ItemsContainer } from "./Contact.style";
@@ -28,7 +28,7 @@ export const Contact = () => {
 
   return (
     <CompanyContainer>
-      <StyledHeading>Kontakt</StyledHeading>
+      <StyledHeader>Kontakt</StyledHeader>
       <ItemsContainer>
         <Company company={company as any} />
       </ItemsContainer>

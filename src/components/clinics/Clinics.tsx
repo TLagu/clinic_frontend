@@ -9,7 +9,7 @@ import {
   ClinicsContainer,
 } from "./Clinics.style";
 import { ClinicItem } from "./ClinicItem";
-import { Loader, StyledHeading } from "components/global.styles";
+import { Loader, StyledHeader } from "components/global.styles";
 
 export const Clinics = () => {
   const [clinics, setClinics] = useState<PageableResponse<ClinicDto> | null>(
@@ -42,7 +42,7 @@ export const Clinics = () => {
 
   return (
     <ClinicsContainer>
-      <StyledHeading>Lista klinik</StyledHeading>
+      <StyledHeader>Lista klinik</StyledHeader>
       {clinics?.content && clinics.content.length > 0 ? (
         <>
           <ItemsContainer>

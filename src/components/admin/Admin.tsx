@@ -1,5 +1,5 @@
 import { UserApi } from "api/UserApi";
-import { Loader, PrimaryButton, StyledHeading } from "components/global.styles";
+import { Loader, PrimaryButton, StyledHeader } from "components/global.styles";
 import { PaginationItem } from "components/common/store/PaginationItem";
 import { UserDto } from "models/api/company/UserDto";
 import { PageableResponse } from "models/api/PageableResponse";
@@ -54,7 +54,7 @@ export const Admin = () => {
 
   return (
     <AdminContainer>
-      <StyledHeading>Panel administracyjny</StyledHeading>
+      <StyledHeader>Panel administracyjny</StyledHeader>
       <UserManagementContainer>
         <ButtonPanelTitle> Zarządzanie użytkownikami:</ButtonPanelTitle>
         <ButtonPanel>

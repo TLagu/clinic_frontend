@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
-import { About } from "components/about/About";
-import { Home } from "components/home/Home";
+import { About } from "components/static_pages/about/About";
+import { Home } from "components/static_pages/home/Home";
 import { Login } from "components/login/Login";
 import { Navbar } from "components/navbar/Navbar";
 import { ProtectedRoute } from "components/ProtectedRoute";
@@ -8,7 +8,7 @@ import { UnauthorizedRoute } from "components/UnauthorizedRoute";
 import { Admin } from "components/admin/Admin";
 import { Secretary } from "components/secretary/Secretary";
 import { Clinics } from "components/clinics/Clinics";
-import { News } from "components/news/News";
+import { News } from "components/static_pages/news/News";
 import { Contact } from "components/contact/Contact";
 import { Register } from "components/register/Register";
 import { DoctorSchedule } from "components/doctor/DoctorSchedule";
